@@ -934,9 +934,10 @@
                     const selectedVoltagesArray = JSON.parse(voltageHiddenInput.value || '[]');
                     const selectedRedesArray = JSON.parse(redeHiddenInput.value || '[]');
 
+                    const inverterType = document.getElementById('inverter_type').value;
                     detalhesData = {
                         produto_id: produtoId,
-                        tipo_inversor: document.getElementById('inverter_type').value,
+                        tipo_inversor: inverterType,
                         nominal_power: getNumericValue(document.getElementById('nominal_power')),
                         start_voltage: getNumericValue(document.getElementById('start_voltage')),
                         min_op_voltage: getNumericValue(document.getElementById('min_op_voltage')),
@@ -947,9 +948,12 @@
                         overload: getNumericValue(document.getElementById('overload')),
                         min_bat_voltage: getNumericValue(document.getElementById('min_bat_voltage')),
                         max_bat_voltage: getNumericValue(document.getElementById('max_bat_voltage')),
-                        max_parallel: getNumericValue(document.getElementById('max_parallel')),
-                        baterias_compativeis: compatibleBatteries.length > 0 ? compatibleBatteries : null
+                        max_parallel: getNumericValue(document.getElementById('max_parallel'))
                     };
+
+                    if (['Hibrido', 'Micro Inversor Hibrido', 'String Off Grid'].includes(inverterType)) {
+                        detalhesData.baterias_compativeis = compatibleBatteries.length > 0 ? compatibleBatteries : null;
+                    }
 
                     const mpptGroups = mpptContainer.querySelectorAll('.mppt-group');
                     if (mpptGroups.length > 0) {

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Produtos - ILUMISOL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#e0f7fa',
+                            100: '#b3e5fc',
+                            500: '#0288d1',
+                            600: '#0277bd',
+                            700: '#01579b'
+                        },
+                        success: {
+                            500: '#4caf50',
+                            600: '#388e3c'
+                        }
+                    },
+                    fontFamily: {
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .section-title { font-size: 1.125rem; font-weight: 600; color: #0277bd; margin-top: 1.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #b3e5fc; }
+        .form-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+        .form-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .form-input { padding: 0.5rem 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; transition: all 0.2s; }
+        .form-input:focus { ring: 2px; ring-color: #b3e5fc; border-color: #0288d1; outline: none; }
+        .form-label { display: block; font-size: 0.875rem; font-weight: 500; color: #4b5563; margin-bottom: 0.25rem; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-primary-50 to-primary-100 font-roboto text-gray-800 min-h-screen">
+
+    <div class="fixed top-0 left-0 w-64 h-screen bg-gradient-to-b from-primary-500 to-primary-600 shadow-2xl z-50 overflow-y-auto">
+        <div class="p-6">
+            <h4 class="text-center text-white text-xl font-bold mb-8">
+                <i class="fas fa-solar-panel mr-2"></i>ILUMISOL
+            </h4>
+            <nav class="space-y-2">
+                <a href="orçamento.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-lightbulb mr-3 w-5"></i>
+                    <span class="font-medium">ORÇAMENTO</span>
+                </a>
+                <a href="estoque.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-warehouse mr-3 w-5"></i>
+                    <span class="font-medium">ESTOQUE</span>
+                </a>
+                <a href="produtos.html" class="flex items-center px-4 py-3 bg-white text-primary-500 rounded-r-3xl shadow-lg font-medium">
+                    <i class="fas fa-box mr-3 w-5"></i>
+                    <span>PRODUTOS</span>
+                </a>
+                <a href="cadastro.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-plus mr-3 w-5"></i>
+                    <span class="font-medium">CADASTRO</span>
+                </a>
+                <a href="marcas.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-tags mr-3 w-5"></i>
+                    <span class="font-medium">MARCAS</span>
+                </a>
+                <a href="precos.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-dollar-sign mr-3 w-5"></i>
+                    <span class="font-medium">PREÇOS</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="ml-64 p-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 flex items-center">
+                <i class="fas fa-box text-primary-500 mr-4"></i>
+                Catálogo de Produtos
+            </h1>
+            <p class="text-gray-600 mt-2">Visualize e gerencie todos os produtos cadastrados no sistema</p>
+        </div>
+        
+        <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                <div class="md:col-span-5">
+                    <label for="searchInput" class="sr-only">Buscar produto</label>
+                    <input type="text" id="searchInput" class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-all duration-200" placeholder="Buscar por modelo ou fabricante...">
+                </div>
+                <div class="md:col-span-3">
+                    <label for="typeFilter" class="sr-only">Filtrar por tipo</label>
+                    <select id="typeFilter" class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-all duration-200">
+                        <option value="">Todos os Tipos</option>
+                        <option value="inversores">Inversores</option>
+                        <option value="modulos">Módulos</option>
+                        <option value="baterias">Baterias</option>
+                        <option value="acessorios_baterias">Acessórios p/ Baterias</option>
+                        <option value="estruturas">Estruturas</option>
+                        <option value="acessorios_inversores">Acessórios p/ Inversores</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                <div class="md:col-span-3">
+                    <label for="brandFilter" class="sr-only">Filtrar por marca</label>
+                    <select id="brandFilter" class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-all duration-200">
+                        <option value="">Todas as Marcas</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1">
+                    <button id="clearFilters" class="w-full px-4 py-2 border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-100 transition-colors" title="Limpar Filtros">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+            <div class="p-8 border-b border-gray-100">
+                <h3 class="text-2xl font-semibold text-gray-800 flex items-center">
+                    <i class="fas fa-list text-primary-500 mr-3"></i>
+                Catálogo
+            </h3>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full" id="products-table">
+                <thead class="bg-gradient-to-r from-primary-500 to-primary-600 text-white">
+                    <tr>
+                        <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Código ERP</th>
+                        <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Modelo</th>
+                        <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Fabricante</th>
+                        <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Tipo</th>
+                        <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Detalhe Principal</th>
+                        <th class="px-6 py-4 text-center text-sm font-semibold uppercase tracking-wider w-32">Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+        <div id="loading-state" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100]">
+            <div class="bg-white rounded-2xl p-8 flex items-center space-x-4">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+                <span class="text-gray-700 font-medium">Carregando...</span>
+            </div>
+        </div>
+
+        <div id="toast" class="hidden fixed top-4 right-4 z-[101] max-w-sm">
+            <div id="toast-content" class="bg-white border-l-4 rounded-lg shadow-lg p-4">
+                <div class="flex items-center">
+                    <div id="toast-icon" class="flex-shrink-0 mr-3"></div>
+                    <div id="toast-message" class="text-sm font-medium"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="editProductModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-6xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+                <div class="bg-gradient-to-r from-primary-500 to-primary-600 px-6 py-4 flex-shrink-0">
+                    <h5 class="text-xl font-semibold text-white flex items-center">
+                        <i class="fas fa-edit mr-3"></i>
+                        Editar Produto
+                    </h5>
+                </div>
+                <div class="p-6 overflow-y-auto flex-grow">
+                    <form id="edit-product-form">
+                        <input type="hidden" id="editProductId">
+                        <input type="hidden" id="editProductType">
+                        <div id="edit-form-content"></div>
+                    </form>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 flex justify-end space-x-3 flex-shrink-0">
+                    <button type="button" class="px-6 py-2 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors duration-200" onclick="closeEditModal()">
+                        Cancelar
+                    </button>
+                    <button type="button" class="px-6 py-2 bg-primary-500 text-white rounded-xl hover:bg-primary-600 transition-colors duration-200 flex items-center space-x-2" id="saveProductChangesBtn">
+                        <i class="fas fa-save"></i>
+                        <span>Salvar Alterações</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script>
+            // --- SUPABASE CLIENT SETUP ---
+            const supabaseUrl = 'https://fuwaybwljyrmkpjuuyoa.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1d2F5YndsanlybWtwanV1eW9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgzMDk1NDYsImV4cCI6MjA3Mzg4NTU0Nn0.21CYoRHG7EjXkzjhfQB8mVO6IYdYJF7cdyMbwQKyldU';
+            const { createClient } = supabase;
+            const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+            // --- DOM ELEMENTS ---
+            const tableBody = document.querySelector('#products-table tbody');
+            const loadingState = document.getElementById('loading-state');
+            const toast = document.getElementById('toast');
+            const searchInput = document.getElementById('searchInput');
+            const typeFilter = document.getElementById('typeFilter');
+            const brandFilter = document.getElementById('brandFilter');
+            const clearFiltersBtn = document.getElementById('clearFilters');
+
+            // --- STATE VARIABLES ---
+            let allProducts = [];
+            let allBrands = [];
+            let allBatteries = [];
+            let allAccessories = []; // State for battery accessories
+
+            // --- UI UTILITY FUNCTIONS ---
+            function showToast(message, type = 'success') {
+                const toastContent = document.getElementById('toast-content');
+                const toastIcon = document.getElementById('toast-icon');
+                const toastMessage = document.getElementById('toast-message');
+                
+                toastContent.className = `bg-white border-l-4 rounded-lg shadow-lg p-4 ${type === 'success' ? 'border-green-500' : 'border-red-500'}`;
+                toastIcon.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle text-green-500' : 'fa-exclamation-circle text-red-500'} text-lg"></i>`;
+                
+                toastMessage.textContent = message;
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 4000);
+            }
+
+            function showLoading(show = true) {
+                loadingState.classList.toggle('hidden', !show);
+            }
+
+            function closeEditModal() {
+                document.getElementById('editProductModal').classList.add('hidden');
+            }
+
+            function showEditModal() {
+                document.getElementById('editProductModal').classList.remove('hidden');
+            }
+
+            // --- DATA HANDLING FUNCTIONS ---
+            async function initializeData() {
+                showLoading(true);
+                try {
+                    const brandsPromise = supabaseClient.from('marcas').select('nome');
+                    const productsPromise = supabaseClient.from('produtos').select('*, inversores(*), modulos(*), baterias(*)').order('modelo', { ascending: true });
+                    const batteriesPromise = supabaseClient.from('produtos').select('id, modelo, fabricante').eq('tipo', 'baterias');
+                    const accessoriesPromise = supabaseClient.from('produtos').select('id, modelo, fabricante').eq('tipo', 'acessorios_baterias');
+                    
+                    const [
+                        { data: brandsData, error: brandsError }, 
+                        { data: productsData, error: productsError }, 
+                        { data: batteriesData, error: batteriesError },
+                        { data: accessoriesData, error: accessoriesError }
+                    ] = await Promise.all([brandsPromise, productsPromise, batteriesPromise, accessoriesPromise]);
+                    
+                    if (brandsError) throw brandsError;
+                    if (productsError) throw productsError;
+                    if (batteriesError) throw batteriesError;
+                    if (accessoriesError) throw accessoriesError;
+
+                    allBrands = brandsData.map(b => b.nome).sort();
+                    populateBrandFilter();
+                    allProducts = productsData;
+                    allBatteries = batteriesData;
+                    allAccessories = accessoriesData; // Store accessories
+                    displayProducts(allProducts);
+                } catch (error) {
+                    console.error('Erro ao inicializar dados:', error);
+                    showToast('Falha ao carregar dados do banco.', 'error');
+                } finally {
+                    showLoading(false);
+                }
+            }
+
+            function populateBrandFilter() {
+                brandFilter.innerHTML = '<option value="">Todas as Marcas</option>';
+                allBrands.forEach(brand => brandFilter.innerHTML += `<option value="${brand}">${brand}</option>`);
+            }
+            
+            function displayProducts(products) {
+                tableBody.innerHTML = '';
+                if (products.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="6" class="px-6 py-12 text-center text-gray-500"><i class="fas fa-inbox text-4xl mb-4 block"></i><p class="text-lg font-medium">Nenhum produto encontrado</p></td></tr>`;
+                    return;
+                }
+                products.forEach(p => {
+                    let detail = 'N/A';
+                    if (p.tipo === 'inversores' && p.inversores) detail = `${p.inversores.nominal_power || 0} W`;
+                    else if (p.tipo === 'modulos' && p.modulos) detail = `${p.modulos.power_wp || 0} Wp`;
+                    else if (p.tipo === 'baterias' && p.baterias) detail = `${p.baterias.capacity || 0} kWh`;
+                    
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50 transition-colors duration-200';
+                    row.innerHTML = `
+                        <td class="px-6 py-4 text-sm font-medium text-gray-900">${p.codigo_erp || 'N/A'}</td>
+                        <td class="px-6 py-4 text-sm text-gray-900 font-medium">${p.modelo}</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">${p.fabricante}</td>
+                        <td class="px-6 py-4 text-sm text-gray-700 capitalize">${p.tipo.replace(/_/g, ' ')}</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">${detail}</td>
+                        <td class="px-6 py-4 text-center">
+                            <div class="flex justify-center space-x-2">
+                                <button class="action-btn btn-edit p-2 text-primary-500 hover:bg-primary-50 rounded-lg transition-all duration-200 hover:scale-110" data-id="${p.id}" title="Editar produto"><i class="fas fa-edit text-sm"></i></button>
+                                <button class="action-btn btn-delete p-2 text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200 hover:scale-110" data-id="${p.id}" data-modelo="${p.modelo}" title="Excluir produto"><i class="fas fa-trash text-sm"></i></button>
+                            </div>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            function applyFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedType = typeFilter.value;
+                const selectedBrand = brandFilter.value;
+                const filteredProducts = allProducts.filter(p => 
+                    (p.modelo.toLowerCase().includes(searchTerm) || p.fabricante.toLowerCase().includes(searchTerm)) &&
+                    (!selectedType || p.tipo === selectedType) &&
+                    (!selectedBrand || p.fabricante === selectedBrand)
+                );
+                displayProducts(filteredProducts);
+            }
+
+            // --- CRUD OPERATIONS ---
+            function editProduct(productId) {
+                const productToEdit = allProducts.find(p => p.id == productId);
+                if (productToEdit) {
+                    renderEditForm(productToEdit);
+                    showEditModal();
+                }
+            }
+
+            async function deleteProduct(productId, modelo) {
+                if (confirm(`Tem certeza que deseja deletar "${modelo}"?`)) {
+                    showLoading(true);
+                    try {
+                        const { error } = await supabaseClient.from('produtos').delete().eq('id', productId);
+                        if (error) throw error;
+                        showToast('Produto deletado com sucesso!');
+                        await initializeData();
+                    } catch (error) {
+                        console.error('Erro ao deletar:', error);
+                        showToast(`Erro ao deletar produto: ${error.message}`, 'error');
+                    } finally {
+                        showLoading(false);
+                    }
+                }
+            }
+            
+            // --- MODAL INTERACTIVITY (GLOBAL STATE & HANDLERS) ---
+            let selectedBatteryIds = new Set();
+            let selectedRedes = new Set();
+            let selectedVoltages = new Set();
+            const networkOptions = ['Monofásico', 'Bifásico', 'Trifásico'];
+            const voltageMap = {
+                'Monofásico': ['127V', '220V'],
+                'Bifásico': ['127/220V'],
+                'Trifásico': ['127/220V', '220/380V']
+            };
+
+            function initializeModalListeners(container) {
+                // Battery Search for Inverters
+                const batterySearchInput = container.querySelector('#edit-battery-search');
+                if (batterySearchInput) {
+                    const suggestionsList = container.querySelector('#edit-suggestions-list');
+                    batterySearchInput.addEventListener('input', (e) => handleBatterySearch(e.target.value, suggestionsList));
+                    suggestionsList.addEventListener('click', (e) => handleSuggestionClick(e, 'edit-battery-search', 'edit-suggestions-list', 'edit-selected-batteries-container', selectedBatteryIds, addBatteryTag));
+                }
+
+                // Network Tags for Inverters
+                const redeTagsContainer = container.querySelector('#edit-rede-tags-container');
+                if (redeTagsContainer) {
+                    redeTagsContainer.addEventListener('click', (e) => handleRedeTagClick(e));
+                }
+
+                container.querySelectorAll('.accessory-search-input').forEach(input => {
+                    const suggestionsList = input.nextElementSibling;
+                    if (suggestionsList && suggestionsList.classList.contains('suggestions-list-accessory')) {
+                        // Remove existing listeners to prevent duplicates
+                        const newInput = input.cloneNode(true);
+                        input.parentNode.replaceChild(newInput, input);
+                        
+                        const newSuggestionsList = newInput.nextElementSibling;
+                        
+                        newInput.addEventListener('input', (e) => handleAccessorySearch(e, newSuggestionsList));
+                        newSuggestionsList.addEventListener('click', (e) => handleAccessorySuggestionClick(e, newInput, newSuggestionsList));
+                    }
+                });
+            }
+
+            // --- MODAL EVENT HANDLERS ---
+            function handleBatterySearch(query, suggestionsEl) {
+                suggestionsEl.innerHTML = '';
+                suggestionsEl.classList.add('hidden');
+                if (query.length > 0) {
+                    const filtered = allBatteries.filter(b => 
+                        !selectedBatteryIds.has(b.id) && 
+                        (b.modelo.toLowerCase().includes(query.toLowerCase()) || b.fabricante.toLowerCase().includes(query.toLowerCase()))
+                    );
+                    if (filtered.length > 0) {
+                        suggestionsEl.classList.remove('hidden');
+                        filtered.forEach(battery => {
+                            const item = document.createElement('div');
+                            item.dataset.id = battery.id;
+                            item.dataset.name = `${battery.modelo} (${battery.fabricante})`;
+                            item.className = 'px-4 py-2 cursor-pointer hover:bg-blue-100';
+                            item.textContent = `${battery.modelo} (${battery.fabricante})`;
+                            suggestionsEl.appendChild(item);
+                        });
+                    }
+                }
+            }
+
+            function handleSuggestionClick(e, searchInputId, suggestionsListId, containerId, idSet, addTagFn) {
+                const item = e.target.closest('div[data-id]');
+                if (item) {
+                    const id = parseInt(item.dataset.id);
+                    if (!idSet.has(id)) {
+                        addTagFn(id, item.dataset.name, containerId);
+                        idSet.add(id);
+                    }
+                    document.getElementById(searchInputId).value = '';
+                    document.getElementById(suggestionsListId).classList.add('hidden');
+                }
+            }
+
+            function addBatteryTag(id, name, containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                const tag = document.createElement('span');
+                tag.dataset.id = id;
+                tag.className = 'inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-medium';
+                tag.innerHTML = `${name} <button type="button" class="ml-2 text-blue-500 hover:text-blue-700"><i class="fas fa-times text-xs"></i></button>`;
+                container.appendChild(tag);
+                
+                tag.querySelector('button').addEventListener('click', () => {
+                    tag.remove();
+                    selectedBatteryIds.delete(id);
+                });
+            }
+            
+            function handleRedeTagClick(e) {
+                const tag = e.target.closest('.edit-rede-tag');
+                if (tag) {
+                    const rede = tag.dataset.value;
+                    const isSelected = tag.classList.contains('bg-blue-600');
+                    
+                    if (isSelected) {
+                        tag.classList.remove('bg-blue-600', 'text-white');
+                        tag.classList.add('bg-gray-200', 'text-gray-700');
+                        selectedRedes.delete(rede);
+                    } else {
+                        tag.classList.remove('bg-gray-200', 'text-gray-700');
+                        tag.classList.add('bg-blue-600', 'text-white');
+                        selectedRedes.add(rede);
+                    }
+                    
+                    updateVoltageTagsUI();
+                }
+            }
+            
+            function updateVoltageTagsUI(initialVoltages = []) {
+                const container = document.getElementById('edit-voltage-tags-container');
+                if (!container) return;
+                container.innerHTML = '';
+                selectedVoltages.clear();
+
+                if (selectedRedes.size === 0) {
+                    container.innerHTML = '<span class="text-gray-400 text-sm">Selecione a rede...</span>';
+                    return;
+                }
+
+                const possibleVoltages = new Set();
+                selectedRedes.forEach(rede => voltageMap[rede]?.forEach(v => possibleVoltages.add(v)));
+                
+                Array.from(possibleVoltages).forEach(voltage => {
+                    const tag = document.createElement('span');
+                    tag.dataset.value = voltage;
+                    tag.className = 'edit-voltage-tag cursor-pointer px-3 py-1 rounded-full bg-gray-200 text-gray-700 transition-colors';
+                    tag.textContent = voltage;
+                    
+                    if (initialVoltages.includes(voltage) && !selectedVoltages.has(voltage)) {
+                        tag.classList.remove('bg-gray-200', 'text-gray-700');
+                        tag.classList.add('bg-blue-600', 'text-white');
+                        selectedVoltages.add(voltage);
+                    }
+
+                    tag.addEventListener('click', () => {
+                        const isSelected = tag.classList.contains('bg-blue-600');
+                        
+                        if (isSelected) {
+                            tag.classList.remove('bg-blue-600', 'text-white');
+                            tag.classList.add('bg-gray-200', 'text-gray-700');
+                            selectedVoltages.delete(voltage);
+                        } else {
+                            tag.classList.remove('bg-gray-200', 'text-gray-700');
+                            tag.classList.add('bg-blue-600', 'text-white');
+                            selectedVoltages.add(voltage);
+                        }
+                    });
+                    container.appendChild(tag);
+                });
+            }
+
+            function handleAccessorySearch(event, suggestionsEl) {
+                const query = event.target.value.toLowerCase();
+                suggestionsEl.innerHTML = '';
+                suggestionsEl.classList.add('hidden');
+                
+                if(query.length > 0) {
+                    const filtered = allAccessories.filter(a => 
+                        a.modelo.toLowerCase().includes(query) || 
+                        a.fabricante.toLowerCase().includes(query)
+                    );
+                    
+                    if (filtered.length > 0) {
+                        suggestionsEl.classList.remove('hidden');
+                        filtered.forEach(acc => {
+                            const item = document.createElement('div');
+                            item.dataset.id = acc.id;
+                            item.dataset.name = `${acc.modelo} (${acc.fabricante})`;
+                            item.className = 'px-4 py-2 cursor-pointer hover:bg-blue-100';
+                            item.textContent = `${acc.modelo} (${acc.fabricante})`;
+                            suggestionsEl.appendChild(item);
+                        });
+                    }
+                }
+            }
+            
+            function handleAccessorySuggestionClick(event, searchInput, suggestionsList) {
+                const item = event.target.closest('div[data-id]');
+                if (item) {
+                    searchInput.value = item.dataset.name;
+                    const hiddenInput = searchInput.parentElement.querySelector('.accessory-id-input');
+                    if (hiddenInput) {
+                        hiddenInput.value = item.dataset.id;
+                    }
+                    suggestionsList.classList.add('hidden');
+                }
+            }
+
+            // --- DYNAMIC UI CREATION (for modal) ---
+            function createAccessoryRuleHTML(accessory = null, rule = null) {
+                const accName = accessory ? accessory.name : '';
+                const accId = accessory ? accessory.id : '';
+                const qty = rule ? rule.quantidade : '';
+                const perQty = rule ? rule.a_cada : '';
+                const respectVoltage = rule && rule.respect_inverter_voltage ? 'checked' : '';
+                
+                return `
+                    <div class="battery-accessory-group relative p-4 mt-4 border border-gray-200 rounded-xl bg-gray-50">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="relative col-span-1 md:col-span-3 lg:col-span-1">
+                                <label class="form-label">Acessório</label>
+                                <input type="text" class="form-input w-full accessory-search-input" placeholder="Buscar acessório..." value="${accName}">
+                                <div class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg max-h-48 overflow-y-auto hidden suggestions-list-accessory"></div>
+                                <input type="hidden" class="accessory-id-input" value="${accId}">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 col-span-1 md:col-span-2 lg:col-span-2">
+                                <div>
+                                    <label class="form-label">Qtd.</label>
+                                    <input type="number" class="form-input w-full accessory-qty-input" value="${qty}" min="1">
+                                </div>
+                                <div>
+                                    <label class="form-label">a cada X Baterias</label>
+                                    <input type="number" class="form-input w-full accessory-per-qty-input" value="${perQty}" min="1">
+                                </div>
+                            </div>
+                            <div class="col-span-1 md:col-span-3 lg:col-span-3">
+                                <label class="flex items-center space-x-2 text-sm font-medium text-gray-700 cursor-pointer">
+                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded-md border-gray-300 focus:ring-blue-500 respect-voltage-check" ${respectVoltage}>
+                                    <span>Respeitar Tensão do Inversor?</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="button" onclick="this.parentElement.remove()" class="absolute -top-2 -right-2 w-8 h-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors duration-200 flex items-center justify-center" aria-label="Remover acessório">
+                            <i class="fas fa-times text-sm"></i>
+                        </button>
+                    </div>`;
+            }
+
+            // --- FORM RENDERING (UPDATED & COMPLETE) ---
+            function renderEditForm(product) {
+                const p = product;
+                const details = p.inversores || p.modulos || p.baterias || {};
+                document.getElementById('editProductId').value = p.id;
+                document.getElementById('editProductType').value = p.tipo;
+                
+                // Reset states
+                selectedBatteryIds.clear();
+                selectedRedes.clear();
+                selectedVoltages.clear();
+
+                const brandOptions = allBrands.map(b => `<option value="${b}" ${b === p.fabricante ? 'selected' : ''}>${b}</option>`).join('');
+                
+                let specificFieldsHTML = '';
+                
+                if (p.tipo === 'inversores') {
+                    const inv = details || {};
+                    const mpptHTML = (inv.mppt_data && Array.isArray(inv.mppt_data)) ? inv.mppt_data.map((mppt, index) => `
+                        <div class="mppt-group relative p-4 mt-4 border border-gray-200 rounded-xl bg-gray-50">
+                            <span class="absolute -top-3 left-4 bg-gray-50 px-2 text-sm text-gray-600 font-medium">MPPT ${index + 1}</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                <div><label class="form-label">Qtd Entradas</label><input type="number" class="w-full form-input" name="mppt_entradas" value="${mppt.entradas || ''}"></div>
+                                <div><label class="form-label">Corrente Máx. Op. (A)</label><input type="number" step="any" class="w-full form-input" name="mppt_max_op_current" value="${mppt.max_op_current || ''}"></div>
+                                <div><label class="form-label">Corrente Máx. Curto (A)</label><input type="number" step="any" class="w-full form-input" name="mppt_max_short_current" value="${mppt.max_short_current || ''}"></div>
+                                <div><label class="form-label">Potência Nom. (W)</label><input type="number" class="w-full form-input" name="mppt_nominal_power" value="${mppt.nominal_power || ''}"></div>
+                            </div>
+                        </div>`).join('') : '';
+
+                    let batterySectionHTML = '';
+                    if (['Hibrido', 'Micro Inversor Hibrido', 'String Off Grid'].includes(inv.tipo_inversor)) {
+                        batterySectionHTML = `
+                            <h5 class="section-title">Características da Bateria</h5>
+                            <div class="form-grid-3">
+                                <div class="relative">
+                                    <label class="form-label">Baterias Compatíveis</label>
+                                    <div id="edit-selected-batteries-container" class="flex flex-wrap gap-2 p-2 min-h-[44px] border border-gray-300 rounded-xl mb-2"></div>
+                                    <input type="text" id="edit-battery-search" placeholder="Buscar baterias..." class="w-full form-input">
+                                    <div id="edit-suggestions-list" class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg max-h-48 overflow-y-auto hidden"></div>
+                                </div>
+                                <div><label class="form-label">Tensão Mín. Bateria (V)</label><input type="number" step="any" class="w-full form-input" id="edit_min_bat_voltage" value="${inv.min_bat_voltage || ''}"></div>
+                                <div><label class="form-label">Tensão Máx. Bateria (V)</label><input type="number" step="any" class="w-full form-input" id="edit_max_bat_voltage" value="${inv.max_bat_voltage || ''}"></div>
+                                <div><label class="form-label">Máx. Paralelo</label><input type="number" class="w-full form-input" id="edit_max_parallel" value="${inv.max_parallel || ''}"></div>
+                            </div>`;
+                    }
+                    
+                    const inverterTypeOptions = ['String Off Grid', 'Hibrido', 'On-Grid', 'Micro Inversor On-Grid', 'Micro Inversor Hibrido']
+                        .map(opt => `<option value="${opt}" ${inv.tipo_inversor === opt ? 'selected' : ''}>${opt}</option>`).join('');
+                    
+                    const redeTagsHTML = networkOptions.map(rede => `<span data-value="${rede}" class="edit-rede-tag cursor-pointer px-3 py-1 rounded-full ${(inv.rede || []).includes(rede) ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'} transition-colors">${rede}</span>`).join('');
+                    
+                    specificFieldsHTML = `
+                        <h5 class="section-title">Características AC</h5>
+                        <div class="form-grid-3">
+                            <div><label class="form-label">Tipo Inversor</label><select class="w-full form-input" id="edit_tipo_inversor">${inverterTypeOptions}</select></div>
+                            <div><label class="form-label">Potência Nominal (W)</label><input type="number" class="w-full form-input" id="edit_nominal_power" value="${inv.nominal_power || ''}"></div>
+                            <div><label class="form-label">Overload (%)</label><input type="number" step="any" class="w-full form-input" id="edit_overload" value="${inv.overload || ''}"></div>
+                        </div>
+                         <div class="form-grid-2 mt-4">
+                              <div>
+                                 <label class="form-label">Rede</label>
+                                 <div id="edit-rede-tags-container" class="flex flex-wrap gap-2 p-2 min-h-[44px] border border-gray-300 rounded-xl bg-white">${redeTagsHTML}</div>
+                              </div>
+                              <div>
+                                 <label class="form-label">Tensão</label>
+                                 <div id="edit-voltage-tags-container" class="flex flex-wrap gap-2 p-2 min-h-[44px] border border-gray-300 rounded-xl bg-white"></div>
+                              </div>
+                          </div>
+                        <h5 class="section-title">Características DC</h5>
+                        <div class="form-grid-2">
+                            <div><label class="form-label">Tensão de Start (V)</label><input type="number" step="any" class="w-full form-input" id="edit_start_voltage" value="${inv.start_voltage || ''}"></div>
+                            <div><label class="form-label">Tensão Mín. Operação (V)</label><input type="number" step="any" class="w-full form-input" id="edit_min_op_voltage" value="${inv.min_op_voltage || ''}"></div>
+                            <div><label class="form-label">Tensão Máx. Operação (V)</label><input type="number" step="any" class="w-full form-input" id="edit_max_op_voltage" value="${inv.max_op_voltage || ''}"></div>
+                            <div><label class="form-label">Tensão de Isolação (V)</label><input type="number" step="any" class="w-full form-input" id="edit_isolation_voltage" value="${inv.isolation_voltage || ''}"></div>
+                        </div>
+                        ${batterySectionHTML}
+                        <h5 class="section-title">MPPTs</h5>
+                        <div id="mppt-container">${mpptHTML}</div>`;
+                
+                } else if (p.tipo === 'modulos') {
+                    const mod = details || {};
+                    specificFieldsHTML = `
+                        <h5 class="section-title">Características DC</h5>
+                        <div class="form-grid-3">
+                            <div><label class="form-label">Potência (Wp)</label><input type="number" step="any" class="w-full form-input" id="edit_power_wp" value="${mod.power_wp || ''}"></div>
+                            <div><label class="form-label">Tensão Vmp (V)</label><input type="number" step="any" class="w-full form-input" id="edit_voltage_vmp" value="${mod.voltage_vmp || ''}"></div>
+                            <div><label class="form-label">Tensão Voc (V)</label><input type="number" step="any" class="w-full form-input" id="edit_voltage_voc" value="${mod.voltage_voc || ''}"></div>
+                            <div><label class="form-label">Corrente Imp (A)</label><input type="number" step="any" class="w-full form-input" id="edit_current_imp" value="${mod.current_imp || ''}"></div>
+                            <div><label class="form-label">Corrente Isc (A)</label><input type="number" step="any" class="w-full form-input" id="edit_current_isc" value="${mod.current_isc || ''}"></div>
+                        </div>`;
+                } else if (p.tipo === 'baterias') {
+                    const bat = details || {};
+                    const accessoriesHTML = (bat.acessorios_compativeis && Array.isArray(bat.acessorios_compativeis)) ? 
+                        bat.acessorios_compativeis.map(acc_rule => {
+                            const accessory = allAccessories.find(a => a.id == acc_rule.id);
+                            return createAccessoryRuleHTML(
+                                accessory ? { id: accessory.id, name: `${accessory.modelo} (${accessory.fabricante})` } : null, 
+                                acc_rule.regra
+                            );
+                        }).join('') : '';
+
+                    specificFieldsHTML = `
+                        <h5 class="section-title">Características</h5>
+                        <div class="form-grid-3">
+                            <div><label class="form-label">Tipo</label><select class="w-full form-input" id="edit_tipo_bateria"><option value="Chumbo-Ácido" ${bat.tipo_bateria === 'Chumbo-Ácido' ? 'selected' : ''}>Chumbo-Ácido</option><option value="LFP" ${bat.tipo_bateria === 'LFP' ? 'selected' : ''}>LFP</option></select></div>
+                            <div><label class="form-label">Tipo de Tensão</label><select class="w-full form-input" id="edit_tensao_tipo"><option value="LV" ${bat.tensao_tipo === 'LV' ? 'selected': ''}>LV (Baixa Tensão)</option><option value="HV" ${bat.tensao_tipo === 'HV' ? 'selected': ''}>HV (Alta Tensão)</option></select></div>
+                            <div><label class="form-label">Capacidade (kWh)</label><input type="number" step="0.01" class="w-full form-input" id="edit_capacity" value="${bat.capacity || ''}"></div>
+                            <div><label class="form-label">Tensão Mínima (V)</label><input type="number" step="any" class="w-full form-input" id="edit_min_voltage" value="${bat.min_voltage || ''}"></div>
+                            <div><label class="form-label">Tensão Máxima (V)</label><input type="number" step="any" class="w-full form-input" id="edit_max_voltage" value="${bat.max_voltage || ''}"></div>
+                            <div><label class="form-label">Máx. em Paralelo</label><input type="number" class="w-full form-input" id="edit_max_battery_parallel" value="${bat.max_parallel || ''}"></div>
+                            <div><label class="form-label">Garantia (Anos)</label><input type="number" class="w-full form-input" id="edit_garantia_anos" value="${bat.garantia_anos || ''}"></div>
+                            <div><label class="form-label">Garantia (Ciclos)</label><input type="number" class="w-full form-input" id="edit_garantia_ciclos" value="${bat.garantia_ciclos || ''}"></div>
+                        </div>
+                        <h5 class="section-title">Acessórios Compatíveis</h5>
+                        <div id="edit-battery-accessories-container" class="space-y-4">${accessoriesHTML}</div>
+                        <button type="button" id="edit-add-battery-accessory" class="mt-4 px-6 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors duration-200">
+                            <i class="fas fa-plus mr-2"></i>Adicionar Regra de Acessório
+                        </button>`;
+                }
+
+                document.getElementById('edit-form-content').innerHTML = `
+                    <h5 class="section-title">Informações Básicas</h5>
+                    <div class="form-grid-2">
+                        <div><label class="form-label">Modelo</label><input type="text" id="edit_modelo" class="w-full form-input" value="${p.modelo || ''}"></div>
+                        <div><label class="form-label">Fabricante</label><select id="edit_fabricante" class="w-full form-input">${brandOptions}</select></div>
+                        <div><label class="form-label">Código ERP</label><input type="text" id="edit_codigo_erp" class="w-full form-input" value="${p.codigo_erp || ''}"></div>
+                        ${p.tipo !== 'baterias' ? `<div><label class="form-label">Garantia (Anos)</label><input type="number" id="edit_garantia" class="w-full form-input" value="${p.garantia || ''}"></div>` : ''}
+                    </div>
+                    ${p.tipo === 'modulos' ? `<div class="form-grid-2 mt-4">
+                        <div><label class="form-label">Dimensões (mm)</label><input type="text" id="edit_dimensoes" class="w-full form-input" value="${p.dimensoes || ''}"></div>
+                        <div><label class="form-label">Frame</label><input type="text" id="edit_frame" class="w-full form-input" value="${p.frame || ''}"></div>
+                    </div>` : ''}
+                    <div class="mt-4"><label class="form-label">Descrição</label><textarea id="edit_description" rows="3" class="w-full form-input">${p.description || ''}</textarea></div>
+                    
+                    ${specificFieldsHTML}
+                `;
+
+                // Post-render initialization
+                const formContent = document.getElementById('edit-form-content');
+                initializeModalListeners(formContent);
+
+                if (p.tipo === 'baterias') {
+                    const addButton = formContent.querySelector('#edit-add-battery-accessory');
+                    if (addButton) {
+                        addButton.addEventListener('click', () => {
+                            const container = formContent.querySelector('#edit-battery-accessories-container');
+                            if (container) {
+                                const newRuleDiv = document.createElement('div');
+                                newRuleDiv.innerHTML = createAccessoryRuleHTML();
+                                const newRule = newRuleDiv.firstElementChild;
+                                container.appendChild(newRule);
+                                
+                                initializeModalListeners(newRule);
+                            }
+                        });
+                    }
+                }
+
+                if (p.tipo === 'inversores') {
+                    const inv = details || {};
+                    
+                    let redesArray = inv.rede || [];
+                    if(Array.isArray(redesArray)) {
+                        redesArray.forEach(r => selectedRedes.add(r));
+                    }
+
+                    let voltagesArray = inv.voltage || [];
+                    updateVoltageTagsUI(Array.isArray(voltagesArray) ? voltagesArray : []);
+
+                    if (inv.baterias_compatíveis && Array.isArray(inv.baterias_compatíveis)) {
+                        inv.baterias_compatíveis.forEach(batteryId => {
+                            const battery = allBatteries.find(b => b.id == batteryId);
+                            if (battery) {
+                                selectedBatteryIds.add(battery.id);
+                                addBatteryTag(battery.id, `${battery.modelo} (${battery.fabricante})`, 'edit-selected-batteries-container');
+                            }
+                        });
+                    }
+                }
+            }
+
+            // --- SAVE CHANGES (UPDATED & COMPLETE) ---
+            document.getElementById('saveProductChangesBtn').addEventListener('click', async () => {
+                showLoading(true);
+                const productId = document.getElementById('editProductId').value;
+                const productType = document.getElementById('editProductType').value;
+                
+                try {
+                    const generalData = {
+                        modelo: document.getElementById('edit_modelo').value,
+                        fabricante: document.getElementById('edit_fabricante').value,
+                        description: document.getElementById('edit_description').value,
+                        codigo_erp: document.getElementById('edit_codigo_erp').value,
+                    };
+                    if (productType !== 'baterias') {
+                        generalData.garantia = parseInt(document.getElementById('edit_garantia').value) || null;
+                    }
+                    if (productType === 'modulos') {
+                        generalData.dimensoes = document.getElementById('edit_dimensoes').value;
+                        generalData.frame = document.getElementById('edit_frame').value;
+                    }
+                    const generalUpdatePromise = supabaseClient.from('produtos').update(generalData).eq('id', productId);
+
+                    let specificData = {};
+                    let tableName = '';
+
+                    if (productType === 'inversores') {
+                        tableName = 'inversores';
+                        const mpptNodes = document.querySelectorAll('#mppt-container .mppt-group');
+                        const mppt_data = Array.from(mpptNodes).map(node => ({
+                            entradas: parseInt(node.querySelector('[name="mppt_entradas"]').value) || null,
+                            max_op_current: parseFloat(node.querySelector('[name="mppt_max_op_current"]').value) || null,
+                            max_short_current: parseFloat(node.querySelector('[name="mppt_max_short_current"]').value) || null,
+                            nominal_power: parseInt(node.querySelector('[name="mppt_nominal_power"]').value) || null,
+                        }));
+                        specificData = {
+                            tipo_inversor: document.getElementById('edit_tipo_inversor').value,
+                            nominal_power: parseFloat(document.getElementById('edit_nominal_power').value) || null,
+                            overload: parseFloat(document.getElementById('edit_overload').value) || null,
+                            start_voltage: parseFloat(document.getElementById('edit_start_voltage').value) || null,
+                            min_op_voltage: parseFloat(document.getElementById('edit_min_op_voltage').value) || null,
+                            max_op_voltage: parseFloat(document.getElementById('edit_max_op_voltage').value) || null,
+                            isolation_voltage: parseFloat(document.getElementById('edit_isolation_voltage').value) || null,
+                            mppt_data: mppt_data,
+                            rede: Array.from(selectedRedes),
+                            voltage: Array.from(selectedVoltages),
+                            baterias_compatíveis: Array.from(selectedBatteryIds).map(id => parseInt(id)),
+                            min_bat_voltage: document.getElementById('edit_min_bat_voltage') ? (parseFloat(document.getElementById('edit_min_bat_voltage').value) || null) : null,
+                            max_bat_voltage: document.getElementById('edit_max_bat_voltage') ? (parseFloat(document.getElementById('edit_max_bat_voltage').value) || null) : null,
+                            max_parallel: document.getElementById('edit_max_parallel') ? (parseInt(document.getElementById('edit_max_parallel').value) || null) : null
+                        };
+                    } else if (productType === 'modulos') {
+                        tableName = 'modulos';
+                        specificData = {
+                            power_wp: parseFloat(document.getElementById('edit_power_wp').value) || null,
+                            voltage_vmp: parseFloat(document.getElementById('edit_voltage_vmp').value) || null,
+                            voltage_voc: parseFloat(document.getElementById('edit_voltage_voc').value) || null,
+                            current_imp: parseFloat(document.getElementById('edit_current_imp').value) || null,
+                            current_isc: parseFloat(document.getElementById('edit_current_isc').value) || null,
+                        };
+                    } else if (productType === 'baterias') {
+                        tableName = 'baterias';
+                        const accessories = [];
+                        document.querySelectorAll('#edit-battery-accessories-container .battery-accessory-group').forEach(group => {
+                            const accessoryId = group.querySelector('.accessory-id-input')?.value;
+                            const qty = parseInt(group.querySelector('.accessory-qty-input')?.value);
+                            const perQty = parseInt(group.querySelector('.accessory-per-qty-input')?.value);
+                            const respectVoltage = group.querySelector('.respect-voltage-check')?.checked || false;
+                            
+                            if (accessoryId && !isNaN(qty) && !isNaN(perQty) && qty > 0 && perQty > 0) {
+                                accessories.push({ 
+                                    id: parseInt(accessoryId), 
+                                    regra: { quantidade: qty, a_cada: perQty, respect_inverter_voltage: respectVoltage } 
+                                });
+                            }
+                        });
+
+                        specificData = {
+                            tipo_bateria: document.getElementById('edit_tipo_bateria').value,
+                            tensao_tipo: document.getElementById('edit_tensao_tipo').value,
+                            capacity: parseFloat(document.getElementById('edit_capacity').value) || null,
+                            min_voltage: parseFloat(document.getElementById('edit_min_voltage').value) || null,
+                            max_voltage: parseFloat(document.getElementById('edit_max_voltage').value) || null,
+                            garantia_anos: parseInt(document.getElementById('edit_garantia_anos').value) || null,
+                            garantia_ciclos: parseInt(document.getElementById('edit_garantia_ciclos').value) || null,
+                            max_parallel: parseInt(document.getElementById('edit_max_battery_parallel').value) || null,
+                            acessorios_compativeis: accessories.length > 0 ? accessories : null
+                        };
+                    }
+                    
+                    let specificUpdatePromise = Promise.resolve();
+                    if (tableName) {
+                        specificUpdatePromise = supabaseClient.from(tableName).update(specificData).eq('produto_id', productId);
+                    }
+
+                    const [generalResult, specificResult] = await Promise.all([generalUpdatePromise, specificUpdatePromise]);
+                    if (generalResult.error) throw generalResult.error;
+                    if (specificResult && specificResult.error) throw specificResult.error;
+
+                    showToast('Produto atualizado com sucesso!');
+                    closeEditModal();
+                    await initializeData();
+                } catch (error) {
+                    console.error('Erro ao salvar alterações:', error);
+                    showToast(`Erro ao salvar: ${error.message}`, 'error');
+                } finally {
+                    showLoading(false);
+                }
+            });
+            
+            // --- EVENT LISTENERS ---
+            tableBody.addEventListener('click', async (event) => {
+                const button = event.target.closest('.action-btn');
+                if (!button) return;
+                
+                const productId = button.dataset.id;
+                if (button.classList.contains('btn-edit')) {
+                    editProduct(productId);
+                } else if (button.classList.contains('btn-delete')) {
+                    const modelo = button.dataset.modelo;
+                    await deleteProduct(productId, modelo);
+                }
+            });
+
+            searchInput.addEventListener('input', applyFilters);
+            typeFilter.addEventListener('change', applyFilters);
+            brandFilter.addEventListener('change', applyFilters);
+            clearFiltersBtn.addEventListener('click', () => {
+                searchInput.value = ''; 
+                typeFilter.value = ''; 
+                brandFilter.value = '';
+                applyFilters();
+            });
+
+            document.addEventListener('DOMContentLoaded', initializeData);
+        </script>
+</body>
+</html>

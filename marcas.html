@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Marcas - ILUMISOL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#e0f7fa',
+                            100: '#b3e5fc',
+                            500: '#0288d1',
+                            600: '#0277bd',
+                            700: '#01579b'
+                        },
+                        success: {
+                            500: '#4caf50',
+                            600: '#388e3c'
+                        }
+                    },
+                    fontFamily: {
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-primary-50 to-primary-100 font-roboto text-gray-800 min-h-screen">
+
+    <!-- Sidebar -->
+    <div class="fixed top-0 left-0 w-64 h-screen bg-gradient-to-b from-primary-500 to-primary-600 shadow-2xl z-50 overflow-y-auto">
+        <div class="p-6">
+            <h4 class="text-center text-white text-xl font-bold mb-8">
+                <i class="fas fa-solar-panel mr-2"></i>ILUMISOL
+            </h4>
+            <nav class="space-y-2">
+                <a href="orçamento.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-lightbulb mr-3 w-5"></i>
+                    <span class="font-medium">ORÇAMENTO</span>
+                </a>
+                <a href="estoque.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-warehouse mr-3 w-5"></i>
+                    <span class="font-medium">ESTOQUE</span>
+                </a>
+                <a href="produtos.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-box mr-3 w-5"></i>
+                    <span class="font-medium">PRODUTOS</span>
+                </a>
+                <a href="cadastro.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-plus mr-3 w-5"></i>
+                    <span class="font-medium">CADASTRO</span>
+                </a>
+                <a href="marcas.html" class="flex items-center px-4 py-3 bg-white text-primary-500 rounded-r-3xl shadow-lg font-medium">
+                    <i class="fas fa-tags mr-3 w-5"></i>
+                    <span>MARCAS</span>
+                </a>
+                <a href="precos.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-dollar-sign mr-3 w-5"></i>
+                    <span class="font-medium">PREÇOS</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64 p-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 flex items-center">
+                <i class="fas fa-tags text-primary-500 mr-4"></i>
+                Gerenciamento de Marcas
+            </h1>
+            <p class="text-gray-600 mt-2">Cadastre e gerencie as marcas dos produtos</p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-white rounded-3xl shadow-2xl p-8 mb-8 border border-gray-100">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-plus-circle text-success-500 mr-3"></i>
+                Cadastrar Nova Marca
+            </h2>
+            <form id="brand-form" class="space-y-6">
+                <div>
+                    <label for="brandName" class="block text-sm font-semibold text-primary-600 mb-2">
+                        Nome da Marca
+                    </label>
+                    <input 
+                        type="text" 
+                        id="brandName" 
+                        name="brandName" 
+                        required
+                        class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 text-gray-700 placeholder-gray-400"
+                        placeholder="Digite o nome da marca..."
+                    >
+                </div>
+                <div class="flex justify-center">
+                    <button 
+                        type="submit" 
+                        class="bg-gradient-to-r from-success-500 to-success-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2"
+                    >
+                        <i class="fas fa-save"></i>
+                        <span>Cadastrar Marca</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Table Card -->
+        <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+            <div class="p-8 border-b border-gray-100">
+                <h3 class="text-2xl font-semibold text-gray-800 flex items-center">
+                    <i class="fas fa-list text-primary-500 mr-3"></i>
+                    Marcas Cadastradas
+                </h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full" id="brands-table">
+                    <thead class="bg-gradient-to-r from-primary-500 to-primary-600 text-white">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">ID</th>
+                            <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Nome da Marca</th>
+                            <th class="px-6 py-4 text-center text-sm font-semibold uppercase tracking-wider w-32">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <!-- Dynamic content will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-2xl p-8 flex items-center space-x-4">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+                <span class="text-gray-700 font-medium">Processando...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+            <div class="bg-gradient-to-r from-primary-500 to-primary-600 px-6 py-4">
+                <h5 class="text-xl font-semibold text-white flex items-center">
+                    <i class="fas fa-edit mr-3"></i>
+                    Editar Marca
+                </h5>
+            </div>
+            <div class="p-6">
+                <form id="edit-form" class="space-y-4">
+                    <input type="hidden" id="editBrandId">
+                    <div>
+                        <label for="editBrandName" class="block text-sm font-semibold text-primary-600 mb-2">
+                            Novo Nome da Marca
+                        </label>
+                        <input 
+                            type="text" 
+                            id="editBrandName" 
+                            required
+                            class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300"
+                        >
+                    </div>
+                </form>
+            </div>
+            <div class="px-6 py-4 bg-gray-50 flex justify-end space-x-3">
+                <button 
+                    type="button" 
+                    id="cancelEditBtn"
+                    class="px-6 py-2 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                >
+                    Cancelar
+                </button>
+                <button 
+                    type="button" 
+                    id="saveChangesBtn"
+                    class="px-6 py-2 bg-primary-500 text-white rounded-xl hover:bg-primary-600 transition-colors duration-200 flex items-center space-x-2"
+                >
+                    <i class="fas fa-save"></i>
+                    <span>Salvar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success/Error Toast -->
+    <div id="toast" class="hidden fixed top-4 right-4 z-50 max-w-sm">
+        <div id="toast-content" class="bg-white border-l-4 rounded-lg shadow-lg p-4">
+            <div class="flex items-center">
+                <div id="toast-icon" class="flex-shrink-0 mr-3"></div>
+                <div id="toast-message" class="text-sm font-medium"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://fuwaybwljyrmkpjuuyoa.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1d2F5YndsanlybWtwanV1eW9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgzMDk1NDYsImV4cCI6MjA3Mzg4NTU0Nn0.21CYoRHG7EjXkzjhfQB8mVO6IYdYJF7cdyMbwQKyldU';
+        const { createClient } = supabase;
+        const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+        const brandForm = document.getElementById('brand-form');
+        const brandsTableBody = document.querySelector('#brands-table tbody');
+        const editModal = document.getElementById('editModal');
+        const loadingState = document.getElementById('loading-state');
+        const toast = document.getElementById('toast');
+
+        // Toast notification system
+        function showToast(message, type = 'success') {
+            const toastContent = document.getElementById('toast-content');
+            const toastIcon = document.getElementById('toast-icon');
+            const toastMessage = document.getElementById('toast-message');
+            
+            if (type === 'success') {
+                toastContent.className = 'bg-white border-l-4 border-green-500 rounded-lg shadow-lg p-4';
+                toastIcon.innerHTML = '<i class="fas fa-check-circle text-green-500 text-lg"></i>';
+            } else {
+                toastContent.className = 'bg-white border-l-4 border-red-500 rounded-lg shadow-lg p-4';
+                toastIcon.innerHTML = '<i class="fas fa-exclamation-circle text-red-500 text-lg"></i>';
+            }
+            
+            toastMessage.textContent = message;
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        function showLoading(show = true) {
+            loadingState.classList.toggle('hidden', !show);
+        }
+
+        // Load brands function with improved UI
+        async function loadBrands() {
+            showLoading(true);
+            try {
+                const { data, error } = await supabaseClient
+                    .from('marcas')
+                    .select('*')
+                    .order('nome', { ascending: true });
+
+                if (error) throw error;
+
+                brandsTableBody.innerHTML = '';
+                
+                if (data.length === 0) {
+                    brandsTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="3" class="px-6 py-12 text-center text-gray-500">
+                                <i class="fas fa-inbox text-4xl mb-4 block"></i>
+                                <p class="text-lg font-medium">Nenhuma marca cadastrada</p>
+                                <p class="text-sm">Cadastre a primeira marca usando o formulário acima</p>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                data.forEach((brand, index) => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50 transition-colors duration-200';
+                    row.innerHTML = `
+                        <td class="px-6 py-4 text-sm font-medium text-gray-900">#${brand.id}</td>
+                        <td class="px-6 py-4 text-sm text-gray-900 font-medium">${brand.nome}</td>
+                        <td class="px-6 py-4 text-center">
+                            <div class="flex justify-center space-x-2">
+                                <button 
+                                    class="action-btn btn-edit p-2 text-primary-500 hover:bg-primary-50 rounded-lg transition-all duration-200 hover:scale-110" 
+                                    data-id="${brand.id}" 
+                                    data-nome="${brand.nome}"
+                                    title="Editar marca"
+                                >
+                                    <i class="fas fa-edit text-sm"></i>
+                                </button>
+                                <button 
+                                    class="action-btn btn-delete p-2 text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200 hover:scale-110" 
+                                    data-id="${brand.id}" 
+                                    data-nome="${brand.nome}"
+                                    title="Excluir marca"
+                                >
+                                    <i class="fas fa-trash text-sm"></i>
+                                </button>
+                            </div>
+                        </td>
+                    `;
+                    brandsTableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar marcas:', error);
+                showToast('Erro ao carregar marcas', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Form submission
+        brandForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const brandName = document.getElementById('brandName').value.trim();
+            
+            if (!brandName) {
+                showToast('Por favor, insira o nome da marca', 'error');
+                return;
+            }
+
+            showLoading(true);
+            try {
+                const { error } = await supabaseClient
+                    .from('marcas')
+                    .insert([{ nome: brandName }]);
+
+                if (error) throw error;
+
+                showToast('Marca cadastrada com sucesso!');
+                brandForm.reset();
+                await loadBrands();
+            } catch (error) {
+                console.error('Erro ao cadastrar marca:', error);
+                showToast('Erro ao cadastrar marca: ' + error.message, 'error');
+            } finally {
+                showLoading(false);
+            }
+        });
+
+        // Modal controls
+        function showEditModal(brandId, brandName) {
+            document.getElementById('editBrandId').value = brandId;
+            document.getElementById('editBrandName').value = brandName;
+            editModal.classList.remove('hidden');
+        }
+
+        function hideEditModal() {
+            editModal.classList.add('hidden');
+        }
+
+        document.getElementById('cancelEditBtn').addEventListener('click', hideEditModal);
+
+        // Save changes
+        document.getElementById('saveChangesBtn').addEventListener('click', async () => {
+            const brandId = document.getElementById('editBrandId').value;
+            const newName = document.getElementById('editBrandName').value.trim();
+
+            if (!newName) {
+                showToast('O nome da marca não pode ficar em branco', 'error');
+                return;
+            }
+
+            showLoading(true);
+            try {
+                const { error } = await supabaseClient
+                    .from('marcas')
+                    .update({ nome: newName })
+                    .eq('id', brandId);
+
+                if (error) throw error;
+
+                showToast('Marca atualizada com sucesso!');
+                hideEditModal();
+                await loadBrands();
+            } catch (error) {
+                console.error('Erro ao atualizar marca:', error);
+                showToast('Erro ao atualizar marca: ' + error.message, 'error');
+            } finally {
+                showLoading(false);
+            }
+        });
+
+        // Table event delegation
+        brandsTableBody.addEventListener('click', async (event) => {
+            const editButton = event.target.closest('.btn-edit');
+            if (editButton) {
+                const brandId = editButton.getAttribute('data-id');
+                const brandName = editButton.getAttribute('data-nome');
+                showEditModal(brandId, brandName);
+                return;
+            }
+
+            const deleteButton = event.target.closest('.btn-delete');
+            if (deleteButton) {
+                const brandId = deleteButton.getAttribute('data-id');
+                const brandName = deleteButton.getAttribute('data-nome');
+
+                if (confirm(`Tem certeza que deseja excluir a marca "${brandName}"?\n\nEsta ação não pode ser desfeita.`)) {
+                    showLoading(true);
+                    try {
+                        const { error } = await supabaseClient
+                            .from('marcas')
+                            .delete()
+                            .eq('id', brandId);
+                        
+                        if (error) throw error;
+
+                        showToast('Marca excluída com sucesso!');
+                        await loadBrands();
+                    } catch (error) {
+                        console.error('Erro ao deletar marca:', error);
+                        showToast('Erro ao excluir marca: ' + error.message, 'error');
+                    } finally {
+                        showLoading(false);
+                    }
+                }
+            }
+        });
+
+        // Close modal when clicking outside
+        editModal.addEventListener('click', (e) => {
+            if (e.target === editModal) {
+                hideEditModal();
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', loadBrands);
+    </script>
+</body>
+</html>

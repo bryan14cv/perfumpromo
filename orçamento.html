@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento - ILUMISOL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#e0f7fa',
+                            100: '#b3e5fc',
+                            500: '#0288d1',
+                            600: '#0277bd',
+                            700: '#01579b'
+                        },
+                        success: {
+                            500: '#4caf50',
+                            600: '#388e3c'
+                        }
+                    },
+                    fontFamily: {
+                        'roboto': ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .group:hover .group-hover\:opacity-100 {
+            pointer-events: none;
+        }
+        .sub-type-btn.active {
+            background: linear-gradient(to right, #0288d1, #0277bd) !important;
+            color: white !important;
+        }
+        .sub-type-btn.active:hover {
+            background: linear-gradient(to right, #0277bd, #01579b) !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-primary-50 to-primary-100 font-roboto text-gray-800 min-h-screen">
+
+    <div class="fixed top-0 left-0 w-64 h-screen bg-gradient-to-b from-primary-500 to-primary-600 shadow-2xl z-50 overflow-y-auto">
+        <div class="p-6">
+            <h4 class="text-center text-white text-xl font-bold mb-8">
+                <i class="fas fa-solar-panel mr-2"></i>ILUMISOL
+            </h4>
+            <nav class="space-y-2">
+                <a href="orçamento.html" class="flex items-center px-4 py-3 bg-white text-primary-500 rounded-r-3xl shadow-lg font-medium">
+                    <i class="fas fa-lightbulb mr-3 w-5"></i>
+                    <span>ORÇAMENTO</span>
+                </a>
+                <a href="estoque.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-warehouse mr-3 w-5"></i>
+                    <span class="font-medium">ESTOQUE</span>
+                </a>
+                <a href="produtos.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-box mr-3 w-5"></i>
+                    <span class="font-medium">PRODUTOS</span>
+                </a>
+                <a href="cadastro.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-plus mr-3 w-5"></i>
+                    <span class="font-medium">CADASTRO</span>
+                </a>
+                <a href="marcas.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-tags mr-3 w-5"></i>
+                    <span class="font-medium">MARCAS</span>
+                </a>
+                <a href="precos.html" class="flex items-center px-4 py-3 text-white rounded-r-3xl transition-all duration-300 hover:bg-white hover:text-primary-500 hover:shadow-lg group">
+                    <i class="fas fa-dollar-sign mr-3 w-5"></i>
+                    <span class="font-medium">PREÇOS</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="ml-64 p-8">
+        <div class="flex justify-center mb-8">
+            <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+                <div class="flex">
+                    <button class="tab-button px-8 py-4 text-primary-500 bg-white font-medium transition-all duration-300 hover:bg-primary-50 border-r border-gray-100" data-tab="ongrid">
+                        SISTEMAS ON-GRID
+                    </button>
+                    <button class="tab-button px-8 py-4 text-white bg-gradient-to-r from-primary-500 to-primary-600 font-medium transition-all duration-300 hover:from-primary-600 hover:to-primary-700 border-r border-gray-100 active" data-tab="hibridos">
+                        SISTEMAS HÍBRIDOS
+                    </button>
+                    <button class="tab-button px-8 py-4 text-primary-500 bg-white font-medium transition-all duration-300 hover:bg-primary-50" data-tab="offgrid">
+                        SISTEMAS OFF-GRID
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane hidden" id="ongrid">
+                <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-8 flex items-center justify-center">
+                        <i class="fas fa-plug text-primary-500 mr-3"></i>
+                        Dimensionamento de Sistemas On-Grid
+                    </h2>
+                    
+                    <div class="flex justify-center mb-8">
+                        <div class="flex bg-gray-100 rounded-2xl p-1">
+                            <button class="sub-type-btn px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-primary-500 text-white active" data-type="tradicional">
+                                Inversor Tradicional
+                            </button>
+                            <button class="sub-type-btn px-6 py-3 rounded-xl font-medium transition-all duration-300 text-gray-600 hover:bg-white" data-type="micro">
+                                Micro Inversor
+                            </button>
+                        </div>
+                    </div>
+
+                    <form id="ongridForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Fase</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="phaseOngrid">
+                                    <option>TRIFÁSICO</option>
+                                    <option>MONOFÁSICO</option>
+                                    <option>BIFÁSICO</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Tensão da Rede</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="gridVoltageOngrid">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Fabricante do Inversor</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="inverterBrandOngrid">
+                                    <option value="">-- SELECIONE --</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Concessionária</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="utilityOngrid">
+                                    <option>COPEL DISTRIBUIDORA S.A (COPEL-DIS)</option>
+                                    <option>CEMIG</option>
+                                    <option>ENEL</option>
+                                    <option>LIGHT</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-8">
+                            <button type="button" class="bg-gradient-to-r from-success-500 to-success-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2 mx-auto" onclick="calculateOnGrid()">
+                                <i class="fas fa-calculator"></i>
+                                <span>Calcular Dimensionamento</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="hibridos">
+                <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-8 flex items-center justify-center">
+                        <i class="fas fa-battery-half text-primary-500 mr-3"></i>
+                        Dimensionamento de Sistemas Híbridos
+                    </h2>
+                    
+                    <div class="flex justify-center mb-8">
+                        <div class="flex flex-wrap gap-2 bg-gray-100 rounded-2xl p-1">
+                            <div class="relative group">
+                                <button class="sub-type-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 bg-primary-500 text-white text-sm active" data-type="backup">
+                                    APENAS BACKUP
+                                </button>
+                                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-64 z-10 pointer-events-none">
+                                    <i class="fas fa-info-circle mr-1"></i>
+                                    Dimensiona apenas o inversor e a bateria para situações de falta de energia, carregando as baterias diretamente pela rede da concessionária, garantindo autonomia em interrupções.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <button class="sub-type-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 text-gray-600 hover:bg-white text-sm" data-type="geracao">
+                                    HÍBRIDO (GERAÇÃO + BACKUP)
+                                </button>
+                                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-64 z-10 pointer-events-none">
+                                    <i class="fas fa-info-circle mr-1"></i>
+                                    Dimensiona o inversor híbrido necessário para o backup, aloca os módulos dimensionados nesse inversor e utiliza inversores on-grid para o restante, otimizando geração e armazenamento.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <button class="sub-type-btn px-4 py-3 rounded-xl font-medium transition-all duration-300 text-gray-600 hover:bg-white text-sm" data-type="autoconsumo">
+                                    AUTOCONSUMO
+                                </button>
+                                <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-64 z-10 pointer-events-none">
+                                    <i class="fas fa-info-circle mr-1"></i>
+                                    Dimensiona o sistema conforme o consumo diário, evitando injeção excessiva na rede elétrica e minimizando impostos sobre a potência injetada (FIO B), promovendo eficiência e economia.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="hibridoForm" class="space-y-6">
+                        <div class="geracao-fields">
+                            <h5 class="text-center mb-4 text-lg font-semibold text-gray-800">Selecione o Módulo Solar</h5>
+                            <div id="moduleGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            </div>
+                            <input type="hidden" id="selectedModuleId" value="">
+                            <input type="hidden" id="modulePower" value="">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 basic-fields">
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Fase</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="phase">
+                                    <option selected>TRIFÁSICO</option>
+                                    <option>MONOFÁSICO</option>
+                                    <option>BIFÁSICO</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Tensão da Rede</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="gridVoltage">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 basic-fields">
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Fabricante do Inversor</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="inverterBrand">
+                                    <option value="">-- SELECIONE --</option>
+                                </select>
+                            </div>
+                            <div class="concessionaria-field">
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Concessionária</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="utility">
+                                    <option>COPEL DISTRIBUIDORA S.A (COPEL-DIS)</option>
+                                    <option>CEMIG</option>
+                                    <option>ENEL</option>
+                                    <option>LIGHT</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 geracao-fields">
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Orientação do Telhado</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="roofOrientation">
+                                    <option>NORTE</option>
+                                    <option>SUL</option>
+                                    <option>LESTE</option>
+                                    <option>OESTE</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Tipo de Fixação</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="fixationType">
+                                    <option>COLONIAL PV / MÓDULOS (T)</option>
+                                    <option>TELHA METÁLICA</option>
+                                    <option>SOLO</option>
+                                    <option>CARPORT</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 geracao-fields">
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">% do Consumo a Atender</label>
+                                <input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="consumptionPercent" value="100">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Quantidade de Linhas</label>
+                                <input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="linesQuantity" value="3">
+                            </div>
+                        </div>
+
+                        <div class="geracao-fields">
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-chart-bar text-primary-500 mr-3"></i>
+                                Consumo Elétrico Mensal Médio (kWh)
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                                <div>
+                                    <label class="block text-sm font-semibold text-primary-600 mb-2">Modo de Cálculo Consumo</label>
+                                    <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="consumptionCalcMode" onchange="toggleConsumptionInput()">
+                                        <option selected>SIMPLES</option>
+                                        <option>DETALHADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="simpleConsumptionInput" class="mb-4">
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Consumo Mensal Médio (kWh)</label>
+                                <input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="avgMonthlyInput" placeholder="Ex: 1000">
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 hidden" id="detailedConsumptionInput">
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Abril</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Maio</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Junho</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Julho</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Agosto</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Setembro</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Outubro</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Novembro</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Dezembro</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Janeiro</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Fevereiro</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                                <div><label class="block text-sm font-semibold text-primary-600 mb-2">Março</label><input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 monthly"></div>
+                            </div>
+                        </div>
+
+                        <div class="param-fields">
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-cogs text-primary-500 mr-3"></i>
+                                Parâmetros para Sistemas Híbridos
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 calc-mode-field">
+                                <div>
+                                    <label class="block text-sm font-semibold text-primary-600 mb-2">Modo de Cálculo</label>
+                                    <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="calcMode" onchange="toggleLoadsCalculator()">
+                                        <option>SIMPLES</option>
+                                        <option selected>DETALHADO</option>
+                                    </select>
+                                    <small class="text-gray-500 text-xs mt-1 block" id="calcModeDescription"></small>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                                <div class="perfil-field">
+                                    <label class="block text-sm font-semibold text-primary-600 mb-2">Perfil de Consumo</label>
+                                    <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="consumptionProfile">
+                                        <option>RESIDENCIAL</option>
+                                        <option>DIURNO</option>
+                                        <option>NOTURNO</option>
+                                    </select>
+                                </div>
+                                <div class="instant-field">
+                                    <label class="block text-sm font-semibold text-primary-600 mb-2">Consumo Instantâneo com Solar (%)</label>
+                                    <input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="instantSolar" value="45">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 backup-time-field">
+                                <div>
+                                    <label class="block text-sm font-semibold text-primary-600 mb-2">Tempo de Backup (Horas)</label>
+                                    <input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="backupTime" value="24">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-primary-600 mb-2">DoD (%)</label>
+                                    <input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="dod" value="90">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 loads-fields">
+                                <div>
+                                    <label class="block text-sm font-semibold text-primary-600 mb-2">Potência Total das Cargas [kW]</label>
+                                    <input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 bg-gray-50" id="power" value="0" readonly>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-primary-600 mb-2">Consumo Diário das Cargas [kWh]</label>
+                                    <input type="number" class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 bg-gray-50" id="dailyEnergyField" value="0" readonly>
+                                </div>
+                            </div>
+
+                            <div class="mb-4" id="loadsCalculatorSection">
+                                <button type="button" class="bg-primary-500 text-white px-6 py-3 rounded-2xl font-medium shadow-lg hover:shadow-xl hover:bg-primary-600 transition-all duration-300 flex items-center space-x-2" onclick="openLoadsModal()">
+                                    <i class="fas fa-calculator"></i>
+                                    <span>Abrir Calculadora de Cargas</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-8">
+                            <button type="button" class="bg-gradient-to-r from-success-500 to-success-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2 mx-auto" onclick="calculateHybridSystem()">
+                                <i class="fas fa-rocket"></i>
+                                <span>Calcular Dimensionamento</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="results" class="hidden mt-8 bg-gradient-to-r from-gray-50 to-gray-100 rounded-3xl p-6">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-chart-line text-primary-500 mr-3"></i>
+                            Resultados do Dimensionamento
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="bg-white rounded-2xl p-4 shadow-sm" id="modulesResultLi">
+                                <strong class="text-primary-600">Módulos:</strong> 
+                                <span id="modulesResult" class="text-gray-800"></span>
+                            </div>
+                            <div class="bg-white rounded-2xl p-4 shadow-sm" id="inverterResultLi">
+                                <strong class="text-primary-600">Inversor:</strong> 
+                                <span id="inverterResult" class="text-gray-800"></span>
+                            </div>
+                            <div class="bg-white rounded-2xl p-4 shadow-sm" id="batteryResultLi">
+                                <strong class="text-primary-600">Bateria:</strong> 
+                                <span id="batteryResult" class="text-gray-800"></span>
+                            </div>
+                             <div class="bg-white rounded-2xl p-4 shadow-sm" id="accessoriesResultLi" style="display: none;">
+                                <strong class="text-primary-600">Acessórios da Bateria:</strong> 
+                                <ul id="accessoriesResult" class="text-gray-800 list-disc list-inside mt-2"></ul>
+                            </div>
+                            <div class="bg-white rounded-2xl p-4 shadow-sm" id="totalPowerLi">
+                                <strong class="text-primary-600">Potência das Cargas:</strong> 
+                                <span id="totalPower" class="text-gray-800"></span>
+                            </div>
+                            <div class="bg-white rounded-2xl p-4 shadow-sm" id="dailyEnergyLi">
+                                <strong class="text-primary-600">Energia Diária (Cargas):</strong> 
+                                <span id="dailyEnergy" class="text-gray-800"></span>
+                            </div>
+                        </div>
+                        
+                        <div id="calculation-log-container" class="mt-6">
+                            <h5 class="text-lg font-semibold text-gray-700 mb-2 flex items-center">
+                                <i class="fas fa-tasks text-primary-500 mr-2"></i>
+                                Memorial de Cálculo
+                            </h5>
+                            <ul id="calculationLogOutput" class="space-y-1 text-sm text-gray-600 bg-white p-4 rounded-2xl border border-gray-200 list-inside">
+                                </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane hidden" id="offgrid">
+                 <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-8 flex items-center justify-center">
+                        <i class="fas fa-solar-panel text-primary-500 mr-3"></i>
+                        Dimensionamento de Sistemas Off-Grid
+                    </h2>
+
+                    <form id="offgridForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Fase</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="phaseOffgrid">
+                                    <option>TRIFÁSICO</option>
+                                    <option>MONOFÁSICO</option>
+                                    <option>BIFÁSICO</option>
+                                </select>
+                            </div>
+                             <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Tensão da Rede</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="gridVoltageOffgrid">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Fabricante do Inversor</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="inverterBrandOffgrid">
+                                    <option value="">-- SELECIONE --</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-primary-600 mb-2">Concessionária</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300" id="utilityOffgrid">
+                                    <option>COPEL DISTRIBUIDORA S.A (COPEL-DIS)</option>
+                                    <option>CEMIG</option>
+                                    <option>ENEL</option>
+                                    <option>LIGHT</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-8">
+                            <button type="button" class="bg-gradient-to-r from-success-500 to-success-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2 mx-auto" onclick="calculateOffGrid()">
+                                <i class="fas fa-calculator"></i>
+                                <span>Calcular Dimensionamento</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-6xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                <h5 class="text-xl font-semibold text-gray-800 flex items-center">
+                    <i class="fas fa-list text-primary-500 mr-3"></i>
+                    Levantamento das Cargas Essenciais
+                </h5>
+                <button type="button" class="text-gray-400 hover:text-gray-600 transition-colors" onclick="closeLoadsModal()">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="overflow-x-auto">
+                    <table class="w-full" id="loadsTable">
+                        <thead class="bg-gradient-to-r from-primary-500 to-primary-600 text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-semibold rounded-tl-lg">Produto</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold">Qtde</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold">Tensão [V]</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold">Potência [W]</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold">Uso Diário (horas)</th>
+                                <th class="px-4 py-3 text-center text-sm font-semibold rounded-tr-lg">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-4 py-3">
+                                    <select class="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 product">
+                                        <option>-- SELECIONE --</option>
+                                        <option>AIR FRYER</option>
+                                        <option>AQUECEDOR DE AMBIENTE</option>
+                                        <option>AR CONDICIONADO</option>
+                                        <option>AR CONDICIONADO - INVERTER</option>
+                                        <option>ASPIRADOR DE PÓ</option>
+                                        <option>BATEDEIRA</option>
+                                        <option>CAFETEIRA ELÉTRICA</option>
+                                        <option>CHALEIRA ELÉTRICA</option>
+                                        <option>COMPUTADOR</option>
+                                        <option>CONSOLE VIDEO-GAME</option>
+                                        <option>ESPREMEDOR DE FRUTAS</option>
+                                        <option>EXAUSTOR DE COZINHA</option>
+                                        <option>FERRO ELÉTRICO</option>
+                                        <option>FORNO ELÉTRICO</option>
+                                        <option>FORNO MICRO-ONDAS</option>
+                                        <option>FREEZER</option>
+                                        <option>GELADEIRA - ANTIGA</option>
+                                        <option>GELADEIRA FROST - FREE</option>
+                                        <option>GRILL</option>
+                                        <option>OUTROS</option>
+                                    </select>
+                                </td>
+                                <td class="px-4 py-3"><input type="number" class="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 qty" value="1"></td>
+                                <td class="px-4 py-3"><input type="number" class="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 voltage" value="220"></td>
+                                <td class="px-4 py-3"><input type="number" class="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 power" value="120"></td>
+                                <td class="px-4 py-3"><input type="number" class="w-full px-3 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-all duration-300 hours" value="20"></td>
+                                <td class="px-4 py-3 text-center">
+                                    <button type="button" class="text-red-500 hover:text-red-700 hover:scale-110 transition-all duration-300" onclick="removeRow(this)">
+                                        <i class="fas fa-trash text-lg"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-6">
+                    <button type="button" class="bg-success-500 text-white px-6 py-3 rounded-2xl font-medium shadow-lg hover:shadow-xl hover:bg-success-600 hover:scale-105 transition-all duration-300 flex items-center space-x-2" onclick="addLoadRow()">
+                        <i class="fas fa-plus"></i>
+                        <span>+ Novo Item</span>
+                    </button>
+                </div>
+                <div class="mt-6 p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl border border-gray-200">
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        <i class="fas fa-info-circle text-primary-500 mr-2"></i>
+                        A média encontrada no mercado, por favor revise e altere se necessário.<br>
+                        Não está na lista? Selecione a opção <strong>OUTROS</strong> e especifique a potência / uso diário.<br>
+                        <em>Ferramenta sugestiva.</em>
+                    </p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-200 bg-gray-50 rounded-b-3xl">
+                <button type="button" class="bg-primary-500 text-white px-8 py-3 rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:bg-primary-600 transition-all duration-300" onclick="updateLoadsFields(); closeLoadsModal();">
+                    Salvar e Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-state" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 flex items-center space-x-4 shadow-2xl">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+            <span class="text-gray-700 font-medium">Calculando dimensionamento...</span>
+        </div>
+    </div>
+    <div id="toast" class="hidden fixed top-4 right-4 z-50 max-w-sm">
+        <div id="toast-content" class="bg-white border-l-4 rounded-lg shadow-lg p-4">
+            <div class="flex items-center">
+                <div id="toast-icon" class="flex-shrink-0 mr-3"></div>
+                <div id="toast-message" class="text-sm font-medium"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // --- Supabase Configuração e Variáveis Globais ---
+        const supabaseUrl = 'https://fuwaybwljyrmkpjuuyoa.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1d2F5YndsanlybWtwanV1eW9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgzMDk1NDYsImV4cCI6MjA3Mzg4NTU0Nn0.21CYoRHG7EjXkzjhfQB8mVO6IYdYJF7cdyMbwQKyldU';
+        const { createClient } = supabase;
+        const supabaseClient = createClient(supabaseUrl, supabaseKey);
+        let availableModules = [], availableInverters = [], availableBatteries = [], availableAccessories = [];
+        let stockData = new Map(), pricedProductIds = new Set();
+        const networkMap = {'MONOFÁSICO': 'Monofásico','BIFÁSICO': 'Bifásico','TRIFÁSICO': 'Trifásico'};
+
+        // --- Funções Helper ---
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast'); const toastContent = document.getElementById('toast-content'); const toastIcon = document.getElementById('toast-icon'); const toastMessage = document.getElementById('toast-message');
+            toastContent.className = `bg-white border-l-4 ${type === 'success' ? 'border-green-500' : 'border-red-500'} rounded-lg shadow-lg p-4`;
+            toastIcon.innerHTML = type === 'success' ? '<i class="fas fa-check-circle text-green-500 text-lg"></i>' : '<i class="fas fa-exclamation-circle text-red-500 text-lg"></i>';
+            toastMessage.textContent = message; toast.classList.remove('hidden'); setTimeout(() => toast.classList.add('hidden'), 4000);
+        }
+        function showLoading(show = true) { document.getElementById('loading-state').classList.toggle('hidden', !show); }
+        async function loadProductsFromDatabase() {
+            showLoading(true);
+            try {
+                const [modules, inverters, batteries, accessories, stock, prices] = await Promise.all([
+                    supabaseClient.from('produtos').select('id, modelo, fabricante, modulos(power_wp)').eq('tipo', 'modulos').order('modelo'),
+                    supabaseClient.from('produtos').select('id, modelo, fabricante, inversores(tipo_inversor, nominal_power, rede, voltage, baterias_compatíveis, max_parallel, min_bat_voltage, max_bat_voltage)').eq('tipo', 'inversores').order('fabricante', 'modelo'),
+                    supabaseClient.from('produtos').select('id, modelo, fabricante, baterias(capacity, max_parallel, acessorios_compativeis, tensao_tipo, min_voltage, max_voltage)').eq('tipo', 'baterias').order('modelo'),
+                    supabaseClient.from('produtos').select('id, modelo').eq('tipo', 'acessorios_baterias'),
+                    supabaseClient.from('estoque').select('produto_id, quantidade'),
+                    supabaseClient.from('precos').select('produto_id, preco_venda')
+                ]);
+                if (modules.error) throw modules.error; if (inverters.error) throw inverters.error; if (batteries.error) throw batteries.error; if (accessories.error) throw accessories.error; if (stock.error) throw stock.error; if (prices.error) throw prices.error;
+                availableInverters = inverters.data; availableBatteries = batteries.data; availableAccessories = accessories.data;
+                stockData = new Map(stock.data.map(s => [s.produto_id, s.quantidade]));
+                pricedProductIds = new Set(prices.data.filter(p => p.preco_venda != null && p.preco_venda > 0).map(p => p.produto_id));
+                availableModules = modules.data.filter(module => pricedProductIds.has(module.id) && (stockData.get(module.id) || 0) > 0);
+                populateModuleGrid(); updateVoltageOptions('phase', 'gridVoltage', 'hibrido'); updateVoltageOptions('phaseOngrid', 'gridVoltageOngrid', 'ongrid'); updateVoltageOptions('phaseOffgrid', 'gridVoltageOffgrid', 'offgrid');
+            } catch (error) { console.error('Error loading products:', error); showToast('Erro ao carregar dados do banco de dados.', 'error'); } finally { showLoading(false); }
+        }
+        function populateSelectWithOptions(selectId, options) {
+            const select = document.getElementById(selectId);
+            if (select) {
+                const currentValue = select.value; select.innerHTML = '<option value="">-- SELECIONE --</option>';
+                options.forEach(optionValue => { const option = new Option(optionValue, optionValue); select.appendChild(option); });
+                if (options.includes(currentValue)) select.value = currentValue;
+            }
+        }
+        function updateAvailableInverterBrands(systemType, phaseSelectId, voltageSelectId, brandSelectId) {
+            const phaseSelect = document.getElementById(phaseSelectId); const voltageSelect = document.getElementById(voltageSelectId); if (!phaseSelect || !voltageSelect) return;
+            const selectedPhase = networkMap[phaseSelect.value]; const selectedVoltage = voltageSelect.value;
+            const inverterTypeMap = { 'hibrido': ['Hibrido', 'Micro Inversor Hibrido'], 'ongrid': ['On-Grid', 'Micro Inversor On-Grid'], 'offgrid': ['String Off Grid'] };
+            const validDbTypes = inverterTypeMap[systemType] || []; const suitableBrands = new Set();
+            availableInverters.forEach(inv => {
+                const details = inv.inversores; const hasPrice = pricedProductIds.has(inv.id); const hasStock = (stockData.get(inv.id) || 0) > 0;
+                if (details && validDbTypes.includes(details.tipo_inversor) && details.rede && details.rede.includes(selectedPhase) && details.voltage && details.voltage.includes(selectedVoltage) && hasPrice && hasStock) { suitableBrands.add(inv.fabricante); }
+            });
+            populateSelectWithOptions(brandSelectId, Array.from(suitableBrands).sort());
+        }
+        function populateModuleGrid() {
+            const moduleGrid = document.getElementById('moduleGrid'); moduleGrid.innerHTML = '';
+            if (availableModules.length === 0) { moduleGrid.innerHTML = `<div class="col-span-full text-center p-4 bg-gray-100 rounded-2xl text-gray-600">Nenhum módulo com preço e estoque disponíveis.</div>`; document.getElementById('selectedModuleId').value = ''; document.getElementById('modulePower').value = ''; return; }
+            availableModules.forEach((module, index) => {
+                const power = module.modulos?.power_wp || 0; const isFirst = index === 0; const moduleCard = document.createElement('div');
+                moduleCard.className = `module-card ${isFirst ? 'bg-primary-50 border-primary-500 active' : 'bg-gray-50 border-gray-200'} border-2 rounded-2xl p-4 text-center cursor-pointer transition-all duration-300 hover:shadow-lg`;
+                moduleCard.dataset.moduleId = module.id; moduleCard.dataset.power = power; moduleCard.onclick = () => selectModule(moduleCard);
+                moduleCard.innerHTML = `<i class="fas fa-solar-panel text-2xl mb-2 ${isFirst ? 'text-primary-500' : 'text-gray-500'}"></i><h6 class="font-semibold text-gray-800">${power}W</h6><small class="text-gray-600">${module.modelo}</small>`;
+                moduleGrid.appendChild(moduleCard);
+            });
+            if (availableModules.length > 0) { document.getElementById('selectedModuleId').value = availableModules[0].id; document.getElementById('modulePower').value = availableModules[0].modulos?.power_wp || 0; }
+        }
+        function selectModule(card) {
+            document.querySelectorAll('.module-card').forEach(c => { c.classList.remove('bg-primary-50', 'border-primary-500', 'active'); c.classList.add('bg-gray-50', 'border-gray-200'); c.querySelector('i').classList.replace('text-primary-500', 'text-gray-500'); });
+            card.classList.add('bg-primary-50', 'border-primary-500', 'active'); card.classList.remove('bg-gray-50', 'border-gray-200'); card.querySelector('i').classList.replace('text-gray-500', 'text-primary-500');
+            document.getElementById('selectedModuleId').value = card.dataset.moduleId; document.getElementById('modulePower').value = card.dataset.power;
+        }
+        function findAllSuitableInverters(brand, systemType, phase, voltage) {
+            const inverterTypeMap = { 'backup': ['Hibrido', 'Micro Inversor Hibrido'], 'geracao': ['Hibrido', 'Micro Inversor Hibrido'], 'autoconsumo': ['Hibrido', 'Micro Inversor Hibrido'], 'tradicional': ['On-Grid'], 'micro': ['Micro Inversor On-Grid'] };
+            const validTypes = inverterTypeMap[systemType] || [];
+            return availableInverters.filter(inv => {
+                const details = inv.inversores; const hasPrice = pricedProductIds.has(inv.id); const hasStock = (stockData.get(inv.id) || 0) > 0;
+                return details && inv.fabricante.toLowerCase() === brand.toLowerCase() && validTypes.includes(details.tipo_inversor) && details.rede && details.rede.includes(phase) && details.voltage && details.voltage.includes(voltage) && hasPrice && hasStock;
+            }).sort((a, b) => a.inversores.nominal_power - b.inversores.nominal_power);
+        }
+        function findBestBattery(compatibleBatteryIds = []) {
+            const batteriesWithStockAndPrice = availableBatteries.filter(b => pricedProductIds.has(b.id) && (stockData.get(b.id) || 0) > 0).map(battery => ({ ...battery, stock: stockData.get(battery.id) || 0 }));
+            const targetBatteries = compatibleBatteryIds.length > 0 ? batteriesWithStockAndPrice.filter(b => compatibleBatteryIds.includes(b.id)) : batteriesWithStockAndPrice;
+            if (targetBatteries.length === 0) return null;
+            targetBatteries.sort((a, b) => b.stock - a.stock);
+            return targetBatteries[0];
+        }
+
+        // --- LÓGICA DE CÁLCULO DE BATERIAS (ATUALIZADA) ---
+        function calculateBatteryConfiguration(selectedBattery, requiredCapacityKWh, inverterConfig) {
+            if (!selectedBattery || !selectedBattery.baterias) return { success: false, message: "Bateria selecionada inválida ou sem detalhes." };
+            if (!inverterConfig || !inverterConfig.inverters || inverterConfig.inverters.length === 0) return { success: false, message: "Configuração do inversor inválida." };
+            
+            const batteryDetails = selectedBattery.baterias;
+            const inverterDetails = inverterConfig.inverters[0].inversores;
+            const batteryCapacity = batteryDetails.capacity || 0;
+            const batteryStock = stockData.get(selectedBattery.id) || 0;
+            const accessoryCalculationLogs = [];
+
+            if (batteryCapacity === 0) return { success: false, message: `Bateria ${selectedBattery.modelo} sem capacidade cadastrada.`};
+            if (!inverterDetails) return { success: false, message: "Detalhes do inversor não encontrados." };
+
+            let requiredBatteries = Math.ceil(requiredCapacityKWh / batteryCapacity);
+            
+            // --- LÓGICA PARA BATERIAS HV ---
+            if (batteryDetails.tensao_tipo === 'HV') {
+                const inverterMinBatV = inverterDetails.min_bat_voltage || 0;
+                const inverterMaxBatV = inverterDetails.max_bat_voltage || Infinity;
+                const batteryMinV = batteryDetails.min_voltage || 0;
+                const batteryMaxV = batteryDetails.max_voltage || 0;
+
+                const minBatteriesForVoltage = (batteryMaxV > 0) ? Math.ceil(inverterMinBatV / batteryMaxV) : 1;
+                requiredBatteries = Math.max(requiredBatteries, minBatteriesForVoltage);
+
+                if (requiredBatteries > batteryStock) {
+                    if (batteryStock * batteryCapacity < requiredCapacityKWh * 0.8) return { success: false, message: `Estoque de baterias insuficiente (${batteryStock} un.) para a energia necessária.` };
+                    requiredBatteries = batteryStock;
+                }
+
+                if (requiredBatteries > (batteryDetails.max_parallel || Infinity)) {
+                    return { success: false, message: `Configuração excede o limite de paralelismo da bateria (${batteryDetails.max_parallel} un.).` };
+                }
+
+                const totalCapacity = requiredBatteries * batteryCapacity;
+                let calculatedAccessories = [];
+
+                if (batteryDetails.acessorios_compativeis && Array.isArray(batteryDetails.acessorios_compativeis)) {
+                    batteryDetails.acessorios_compativeis.forEach(rule => {
+                        const accessoryInfo = availableAccessories.find(acc => acc.id == rule.id);
+                        if (accessoryInfo && rule.regra) {
+                            accessoryCalculationLogs.push(`- Calculando acessório '<strong>${accessoryInfo.modelo}</strong>':`);
+                            let divisor = rule.regra.a_cada || 1;
+                            
+                            if (rule.regra.respect_inverter_voltage) {
+                                accessoryCalculationLogs.push(` - Regra de tensão do inversor <strong>ATIVADA</strong>.`);
+                                const maxBatteriesPerStringVoltage = (batteryMaxV > 0) ? Math.floor(inverterMaxBatV / batteryMaxV) : Infinity;
+                                accessoryCalculationLogs.push(` - Máx. de baterias por string (limite de tensão): <strong>${maxBatteriesPerStringVoltage}</strong>.`);
+                                
+                                divisor = Math.min(rule.regra.a_cada, maxBatteriesPerStringVoltage);
+                                accessoryCalculationLogs.push(` - Divisor Efetivo: MIN(${rule.regra.a_cada}, ${maxBatteriesPerStringVoltage}) = <strong>${divisor}</strong>.`);
+                            } else {
+                                accessoryCalculationLogs.push(` - Regra padrão. Divisor: <strong>${divisor}</strong>.`);
+                            }
+                            
+                            const qty = Math.ceil(requiredBatteries / divisor) * (rule.regra.quantidade || 1);
+                            accessoryCalculationLogs.push(` - Quantidade Final: CEIL(${requiredBatteries} / ${divisor}) * ${rule.regra.quantidade} = <strong>${qty} unidade(s)</strong>.`);
+                            calculatedAccessories.push({ name: accessoryInfo.modelo, quantity: qty });
+                        }
+                    });
+                }
+
+                const message = `${requiredBatteries}x ${selectedBattery.modelo} - ${totalCapacity.toFixed(2)}kWh`;
+                return { success: true, quantity: requiredBatteries, totalCapacity, accessories: calculatedAccessories, requiredInverters: inverterConfig.quantity, message, calculationLog: accessoryCalculationLogs };
+
+            // --- LÓGICA PARA BATERIAS LV ---
+            } else { 
+                if (requiredBatteries > batteryStock) {
+                    if (batteryStock * batteryCapacity < requiredCapacityKWh * 0.8) return { success: false, message: `Estoque de baterias insuficiente (${batteryStock} un.) para a energia necessária.` };
+                    requiredBatteries = batteryStock;
+                }
+
+                const maxBatteriesPerInverter = batteryDetails.max_parallel || 12;
+                const requiredInvertersForLV = Math.ceil(requiredBatteries / maxBatteriesPerInverter);
+
+                if (requiredInvertersForLV > inverterConfig.quantity) {
+                    return { success: false, message: `Configuração requer ${requiredInvertersForLV} inversores (limite de ${maxBatteriesPerInverter} bat. por inversor).`, requiredInverters: requiredInvertersForLV };
+                }
+
+                const totalCapacity = requiredBatteries * batteryCapacity;
+                let calculatedAccessories = [];
+                if (batteryDetails.acessorios_compativeis && Array.isArray(batteryDetails.acessorios_compativeis)) {
+                     batteryDetails.acessorios_compativeis.forEach(rule => {
+                        const accessoryInfo = availableAccessories.find(acc => acc.id == rule.id);
+                        if(accessoryInfo && rule.regra) {
+                            const qty = Math.ceil(requiredBatteries / (rule.regra.a_cada || 1)) * (rule.regra.quantidade || 1);
+                            calculatedAccessories.push({ name: accessoryInfo.modelo, quantity: qty });
+                        }
+                    });
+                }
+                
+                const message = `${requiredBatteries}x ${selectedBattery.modelo} - ${totalCapacity.toFixed(2)}kWh`;
+                return { success: true, quantity: requiredBatteries, totalCapacity, accessories: calculatedAccessories, requiredInverters: inverterConfig.quantity, message, calculationLog: [] };
+            }
+        }
+        
+        async function calculateHybridSystem() {
+            showLoading(true);
+            let calculationLog = [];
+            try {
+                const activeSubType = document.querySelector('#hibridos .sub-type-btn.active').dataset.type;
+                const calcMode = document.getElementById('calcMode').value;
+                const consumptionCalcMode = document.getElementById('consumptionCalcMode').value;
+                const selectedBrand = document.getElementById('inverterBrand').value;
+                const selectedPhase = networkMap[document.getElementById('phase').value];
+                const selectedVoltage = document.getElementById('gridVoltage').value;
+
+                if (!selectedBrand) { showToast('Por favor, selecione o fabricante do inversor.', 'error'); showLoading(false); return; }
+
+                let avgMonthly = 0;
+                if (activeSubType !== 'backup') {
+                    if (consumptionCalcMode === 'SIMPLES') { avgMonthly = parseFloat(document.getElementById('avgMonthlyInput').value) || 0;
+                    } else {
+                        const monthlyInputs = document.querySelectorAll('.monthly'); let totalConsumption = 0, monthsCount = 0;
+                        monthlyInputs.forEach(input => { const val = parseFloat(input.value); if (!isNaN(val)) { totalConsumption += val; monthsCount++; } });
+                        avgMonthly = monthsCount > 0 ? totalConsumption / monthsCount : 0;
+                    }
+                    if (avgMonthly === 0) { showToast('O consumo mensal médio deve ser maior que zero para este modo.', 'error'); showLoading(false); return; }
+                }
+                const avgDaily = avgMonthly / 30;
+                const { totalPower: totalPowerW, dailyEnergy } = calculateLoads();
+                const totalPowerKW = totalPowerW / 1000;
+
+                // Validação de cargas essenciais para os modos que precisam de backup
+                if ((activeSubType === 'backup' || (activeSubType === 'autoconsumo' && calcMode === 'DETALHADO') || activeSubType === 'geracao') && totalPowerKW === 0) { 
+                    showToast('Abra a calculadora e adicione as cargas essenciais para dimensionar o backup.', 'error'); showLoading(false); return; 
+                }
+
+
+                const requiredInverterPower = totalPowerKW * 1.10; // 10% de margem para o inversor no dimensionamento de potência
+                const backupTime = parseFloat(document.getElementById('backupTime').value) || 24;
+                const dod = (parseFloat(document.getElementById('dod').value) || 90) / 100;
+
+                // --- INÍCIO DA NOVA LÓGICA DE ENERGIA (Pior Cenário / Autoconsumo Otimizado) ---
+                calculationLog.push(`<strong>1. Dados de Entrada:</strong><ul><li>- Potência de Cargas (Backup Detalhado): ${totalPowerKW.toFixed(2)} kW</li><li>- Energia de Cargas (Backup Detalhado / 24h): ${dailyEnergy.toFixed(2)} kWh</li><li>- Consumo Médio Diário (Geral): ${avgDaily.toFixed(2)} kWh</li><li>- Autonomia Desejada: ${backupTime} horas</li></ul>`);
+
+                // 1. Calcular a necessidade de energia para BACKUP (baseado no modo Detalhado de Cargas)
+                const energyNeed_Backup = dailyEnergy * (backupTime / 24); // Usa o consumo diário de cargas essenciais * fração do tempo de backup
+                
+                // 2. Calcular a necessidade de energia para AUTOCONSUMO (armazenar o excedente - o que não é consumido instantaneamente)
+                const instantSolarPercent = (parseFloat(document.getElementById('instantSolar').value) || 45) / 100;
+                const energyNeed_Autoconsumo = (avgDaily > 0) ? (avgDaily * (1 - instantSolarPercent)) : 0;
+
+                let energyForBatterySizing = 0;
+                let energyLogReason = "";
+
+                if (activeSubType === 'autoconsumo') {
+                    if (calcMode === 'DETALHADO') {
+                         // Pior cenário entre a necessidade de autoconsumo e a necessidade de backup das cargas essenciais
+                        energyForBatterySizing = Math.max(energyNeed_Autoconsumo, energyNeed_Backup);
+                        energyLogReason = `Pior cenário entre Autoconsumo (${energyNeed_Autoconsumo.toFixed(2)} kWh) e Backup Detalhado (${energyNeed_Backup.toFixed(2)} kWh)`;
+                    } else { // SIMPLES
+                         // Apenas Autoconsumo
+                        energyForBatterySizing = energyNeed_Autoconsumo;
+                        energyLogReason = `Apenas Autoconsumo (${energyNeed_Autoconsumo.toFixed(2)} kWh). Backup ignorado (Modo Simples).`;
+                    }
+                } else if (activeSubType === 'backup' || activeSubType === 'geracao') { 
+                    // Modos 'backup' e 'geracao' usam a lógica de backup
+                    energyForBatterySizing = energyNeed_Backup;
+                    energyLogReason = `Baseado no cálculo de Backup Detalhado.`;
+                }
+
+                // Se a energia necessária for 0 (e o consumo mensal for 0 para Autoconsumo/Geração), não há o que dimensionar na bateria.
+                if (energyForBatterySizing <= 0) { 
+                    showToast('A energia para dimensionar a bateria é zero. Verifique as cargas essenciais/tempo de backup ou o consumo mensal.', 'error'); showLoading(false); return;
+                }
+
+                // Capacidade total necessária (sem o DoD)
+                const energyRequiredTotalCapacity = (energyForBatterySizing / dod); 
+                
+                calculationLog.push(`<strong>2. Necessidades de Bateria:</strong><ul><li>- Energia Base para Dimensionamento (Total / DoD): <strong>${energyRequiredTotalCapacity.toFixed(2)} kWh</strong></li><li>- <em>Motivo: ${energyLogReason}</em></li></ul>`);
+                calculationLog.push(`<strong>3. Necessidades do Inversor:</strong><ul><li>- Potência Mínima (c/ margem): ${requiredInverterPower.toFixed(2)} kW</li></ul>`);
+                // --- FIM DA NOVA LÓGICA DE ENERGIA ---
+
+                const suitableInverters = findAllSuitableInverters(selectedBrand, activeSubType, selectedPhase, selectedVoltage);
+                calculationLog.push(`<strong>4. Busca de Equipamentos:</strong><ul><li>- Buscando inversores da marca '${selectedBrand}'... ${suitableInverters.length} modelos encontrados com estoque e preço.</li></ul>`);
+
+                let finalInverterConfig = null;
+                let finalBatteryConfig = { success: false, message: "Bateria não dimensionada.", accessories: [] };
+
+                for (const inverterCandidate of suitableInverters) {
+                    const inverterDetails = inverterCandidate.inversores;
+                    let singlePowerKW = inverterDetails.nominal_power / 1000;
+                    
+                    // 5. Dimensionamento de Inversor (Potência)
+                    let finalNeededQuantity = singlePowerKW > 0 ? Math.ceil(requiredInverterPower / singlePowerKW) : 1;
+                    
+                    // 6. Dimensionamento de Inversor (Bateria LV/HV)
+                    let neededForBatteries = 1;
+                    let selectedBattery = null;
+                    
+                    if (energyForBatterySizing > 0) {
+                        const compatibleBatteryIds = inverterCandidate.inversores?.baterias_compatíveis || [];
+                        selectedBattery = findBestBattery(compatibleBatteryIds);
+                        
+                        if (!selectedBattery) { calculationLog.push(`- Testando ${inverterCandidate.modelo}: Nenhuma bateria compatível encontrada.`); continue; }
+
+                        if(selectedBattery.baterias.tensao_tipo === 'LV') {
+                            const batteryCapacity = selectedBattery.baterias.capacity || 5.12;
+                            const requiredBatteries = Math.ceil(energyRequiredTotalCapacity / batteryCapacity);
+                            neededForBatteries = Math.ceil(requiredBatteries / (selectedBattery.baterias.max_parallel || 12));
+                        }
+                        
+                        finalNeededQuantity = Math.max(finalNeededQuantity, neededForBatteries);
+                    }
+                    
+                    calculationLog.push(`- Testando ${inverterCandidate.modelo} (${singlePowerKW} kW). Potência: ${Math.ceil(requiredInverterPower / singlePowerKW)} un. | Baterias: ${neededForBatteries} un. -> <strong>Decisão: ${finalNeededQuantity} unidades</strong>.`);
+
+
+                    const maxParallel = inverterDetails.max_parallel || 1;
+                    const stockQuantity = stockData.get(inverterCandidate.id) || 0;
+                    const maxUsable = Math.min(maxParallel, stockQuantity);
+                    
+                    if (finalNeededQuantity > 0 && finalNeededQuantity <= maxUsable) {
+                        const totalPowerKW_final = finalNeededQuantity * singlePowerKW;
+                        finalInverterConfig = {
+                            success: true, inverters: [inverterCandidate], quantity: finalNeededQuantity,
+                            totalPower: totalPowerKW_final,
+                            message: `${finalNeededQuantity}x ${inverterCandidate.modelo} - ${totalPowerKW_final.toFixed(2)}kW total (${inverterDetails.nominal_power}W cada)`
+                        };
+
+                        if (energyForBatterySizing > 0) {
+                             const batteryConfig = calculateBatteryConfiguration(selectedBattery, energyRequiredTotalCapacity, finalInverterConfig);
+                             if (batteryConfig.success) {
+                                 finalBatteryConfig = batteryConfig;
+                                 calculationLog.push(`- <span class="text-green-500">SUCESSO:</span> Bateria <strong>${selectedBattery.modelo}</strong> é compatível. Configuração: ${batteryConfig.message}.`);
+                                 if(batteryConfig.calculationLog && batteryConfig.calculationLog.length > 0) calculationLog.push(...batteryConfig.calculationLog.map(l => `<ul><li>${l}</li></ul>`));
+                             } else {
+                                 calculationLog.push(`- <span class="text-red-500">FALHA BATERIA:</span> ${batteryConfig.message}`);
+                             }
+                        }
+                        
+                        break; // Se encontrou uma solução viável (inversor e bateria), sai do loop
+                    } else {
+                        calculationLog.push(`- <span class="text-red-500">FALHA:</span> Necessário ${finalNeededQuantity} un. mas o máximo permitido/estoque é ${maxUsable}.`);
+                    }
+                }
+                
+                if (!finalInverterConfig) {
+                    showToast('Nenhuma combinação compatível de inversor e bateria foi encontrada para atender a todos os critérios.', 'error'); showLoading(false);
+                    document.getElementById('calculationLogOutput').innerHTML = calculationLog.map(msg => `<li class="py-1 border-b border-gray-100 last:border-b-0"><i class="fas fa-times-circle text-red-500 mr-2 text-xs"></i> ${msg}</li>`).join(''); document.getElementById('results').classList.remove('hidden'); return;
+                }
+                
+                let numModules = 0, totalPv = 0, selectedModule = null;
+                if (activeSubType !== 'backup') {
+                     const selectedModuleId = document.getElementById('selectedModuleId').value;
+                     selectedModule = availableModules.find(m => m.id == selectedModuleId);
+                     if (selectedModule && avgMonthly > 0) {
+                          const modulePower = (selectedModule.modulos?.power_wp || 550) / 1000;
+                          const hsp = 4.5, efficiency = 0.8;
+                          numModules = Math.ceil(avgMonthly / (modulePower * hsp * efficiency * 30));
+                          totalPv = numModules * modulePower;
+                          calculationLog.push(`<strong>7. Dimensionamento dos Módulos:</strong><ul><li>- ${numModules}x ${selectedModule.modelo} para gerar em média ${avgMonthly.toFixed(0)} kWh/mês.</li></ul>`);
+                     }
+                }
+                
+                displayResults({ activeSubType, calcMode, selectedModule, numModules, totalPv, inverterConfig: finalInverterConfig, batteryConfig: finalBatteryConfig, totalPowerKW, dailyEnergy, calculationLog });
+                showToast('Dimensionamento calculado com sucesso!');
+
+            } catch (error) {
+                console.error('Error calculating system:', error);
+                showToast(`Erro ao calcular: ${error.message}`, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // --- Funções de Display e UI ---
+        function displayResults(data) {
+            const { activeSubType, calcMode, selectedModule, numModules, totalPv, inverterConfig, batteryConfig, totalPowerKW, dailyEnergy, calculationLog } = data;
+            document.getElementById('results').classList.remove('hidden');
+            
+            const showModules = activeSubType !== 'backup';
+            document.getElementById('modulesResultLi').style.display = showModules ? 'block' : 'none';
+            if (showModules) document.getElementById('modulesResult').textContent = selectedModule ? `${numModules} x ${selectedModule.modelo} (${totalPv.toFixed(2)} kWp)` : 'N/A';
+            document.getElementById('inverterResultLi').style.display = 'block';
+            document.getElementById('inverterResult').textContent = inverterConfig.message;
+            
+            const showBattery = batteryConfig.success;
+            document.getElementById('batteryResultLi').style.display = showBattery ? 'block' : 'none';
+            if(showBattery) document.getElementById('batteryResult').textContent = batteryConfig.message;
+            
+            const accessoriesList = document.getElementById('accessoriesResult');
+            const accessoriesLi = document.getElementById('accessoriesResultLi');
+            accessoriesList.innerHTML = '';
+            if (batteryConfig.accessories && batteryConfig.accessories.length > 0) {
+                batteryConfig.accessories.forEach(acc => {
+                    const li = document.createElement('li');
+                    li.textContent = `${acc.quantity}x ${acc.name}`;
+                    accessoriesList.appendChild(li);
+                });
+                accessoriesLi.style.display = 'block';
+            } else { accessoriesLi.style.display = 'none'; }
+            
+            // Lógica de visualização de cargas essenciais
+            const showLoads = (activeSubType === 'backup') || (activeSubType === 'autoconsumo' && calcMode === 'DETALHADO') || (activeSubType === 'geracao' && calcMode === 'DETALHADO');
+            document.getElementById('totalPowerLi').style.display = showLoads ? 'block' : 'none';
+            document.getElementById('dailyEnergyLi').style.display = showLoads ? 'block' : 'none';
+            if (showLoads) {
+                document.getElementById('totalPower').textContent = `${totalPowerKW.toFixed(2)} kW`;
+                document.getElementById('dailyEnergy').textContent = `${dailyEnergy.toFixed(2)} kWh`;
+            }
+
+            const logOutput = document.getElementById('calculationLogOutput');
+            logOutput.innerHTML = '';
+            if(calculationLog && calculationLog.length > 0) {
+                calculationLog.forEach(msg => {
+                    const li = document.createElement('li');
+                    li.className = 'py-1 border-b border-gray-100 last:border-b-0';
+                    li.innerHTML = `<i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i> ${msg}`;
+                    logOutput.appendChild(li);
+                });
+            }
+        }
+        function setupEventListeners() {
+            document.querySelectorAll('.tab-button').forEach(button => button.addEventListener('click', function() {
+                document.querySelectorAll('.tab-button').forEach(btn => { btn.classList.remove('bg-gradient-to-r', 'from-primary-500', 'to-primary-600', 'text-white', 'active'); btn.classList.add('text-primary-500', 'bg-white'); });
+                this.classList.add('bg-gradient-to-r', 'from-primary-500', 'to-primary-600', 'text-white', 'active'); this.classList.remove('text-primary-500', 'bg-white');
+                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.add('hidden'));
+                document.getElementById(this.dataset.tab).classList.remove('hidden');
+            }));
+            document.querySelectorAll('#hibridos .sub-type-btn').forEach(button => button.addEventListener('click', function() {
+                this.closest('.flex').querySelectorAll('.sub-type-btn').forEach(btn => { btn.classList.remove('bg-primary-500', 'text-white', 'active'); btn.classList.add('text-gray-600', 'hover:bg-white'); });
+                this.classList.add('bg-primary-500', 'text-white', 'active');
+                updateFieldsVisibility(this.dataset.type);
+            }));
+            document.getElementById('phase').addEventListener('change', () => updateVoltageOptions('phase', 'gridVoltage', 'hibrido'));
+            document.getElementById('gridVoltage').addEventListener('change', () => updateAvailableInverterBrands('hibrido', 'phase', 'gridVoltage', 'inverterBrand'));
+            document.getElementById('phaseOngrid').addEventListener('change', () => updateVoltageOptions('phaseOngrid', 'gridVoltageOngrid', 'ongrid'));
+            document.getElementById('gridVoltageOngrid').addEventListener('change', () => updateAvailableInverterBrands('ongrid', 'phaseOngrid', 'gridVoltageOngrid', 'inverterBrandOngrid'));
+            document.getElementById('phaseOffgrid').addEventListener('change', () => updateVoltageOptions('phaseOffgrid', 'gridVoltageOffgrid', 'offgrid'));
+            document.getElementById('gridVoltageOffgrid').addEventListener('change', () => updateAvailableInverterBrands('offgrid', 'phaseOffgrid', 'gridVoltageOffgrid', 'inverterBrandOffgrid'));
+        }
+        function updateFieldsVisibility(type) {
+            const isBackup = type === 'backup';
+            const isAutoconsumo = type === 'autoconsumo';
+            document.querySelectorAll('.geracao-fields').forEach(el => el.classList.toggle('hidden', isBackup));
+            // O campo de autoconsumo e perfil são visíveis apenas no modo AUTOCONSUMO.
+            document.querySelectorAll('.perfil-field, .instant-field').forEach(el => el.classList.toggle('hidden', !isAutoconsumo));
+            document.querySelectorAll('.calc-mode-field').forEach(el => el.classList.toggle('hidden', isBackup));
+            // Força DETALHADO para Backup, mas mantém o valor para os outros, pois o user pode alternar.
+            if (isBackup) document.getElementById('calcMode').value = 'DETALHADO';
+            toggleLoadsCalculator();
+        }
+        function toggleConsumptionInput() {
+            const mode = document.getElementById('consumptionCalcMode').value;
+            document.getElementById('simpleConsumptionInput').classList.toggle('hidden', mode !== 'SIMPLES');
+            document.getElementById('detailedConsumptionInput').classList.toggle('hidden', mode !== 'DETALHADO');
+        }
+        function toggleLoadsCalculator() {
+            const activeSubType = document.querySelector('#hibridos .sub-type-btn.active').dataset.type;
+            const mode = document.getElementById('calcMode').value;
+            const isSimple = mode === 'SIMPLES';
+            const isAutoconsumo = activeSubType === 'autoconsumo';
+
+            // Visibilidade do Campo de Tempo de Backup
+            const showBackupTimeField = !isAutoconsumo || (isAutoconsumo && mode === 'DETALHADO');
+            document.querySelectorAll('.backup-time-field').forEach(field => field.classList.toggle('hidden', !showBackupTimeField));
+            
+            // Visibilidade da Calculadora de Cargas e Campos Relacionados
+            const showLoadsSection = (activeSubType === 'backup') || (isAutoconsumo && mode === 'DETALHADO') || (activeSubType === 'geracao' && mode === 'DETALHADO');
+            
+            document.getElementById('loadsCalculatorSection').style.display = showLoadsSection ? 'block' : 'none';
+            document.querySelectorAll('.loads-fields').forEach(field => field.style.display = showLoadsSection ? 'grid' : 'none');
+
+            const calcModeDescriptionEl = document.getElementById('calcModeDescription');
+            if (activeSubType === 'backup') {
+                 calcModeDescriptionEl.innerHTML = 'O modo **APENAS BACKUP** sempre usa as cargas detalhadas para dimensionamento de bateria. (Fixo: DETALHADO)';
+            } else if (isAutoconsumo) {
+                 calcModeDescriptionEl.innerHTML = isSimple ? 'SIMPLES: Dimensiona bateria apenas para Autoconsumo (DOD:90%).' : 'DETALHADO: Dimensiona bateria para o pior cenário entre Autoconsumo e Backup de Cargas Essenciais.';
+            } else { // Geração
+                 calcModeDescriptionEl.innerHTML = isSimple ? 'SIMPLES: Utiliza a média diária do consumo total para dimensionar o backup.' : 'DETALHADO: Usa a calculadora de cargas para dimensionamento preciso do backup. Recomendado.';
+            }
+        }
+        function updateVoltageOptions(phaseId, voltageId, systemType) {
+            const phaseSelect = document.getElementById(phaseId);
+            const voltageSelect = document.getElementById(voltageId);
+            const brandSelectId = `inverterBrand${systemType === 'hibrido' ? '' : systemType.charAt(0).toUpperCase() + systemType.slice(1)}`;
+            const update = () => {
+                const phase = phaseSelect.value;
+                const currentVoltage = voltageSelect.value;
+                voltageSelect.innerHTML = '';
+                let options = [];
+                if (phase === 'MONOFÁSICO') options = ['127V', '220V'];
+                else if (phase === 'BIFÁSICO') options = ['127/220V'];
+                else if (phase === 'TRIFÁSICO') options = ['127/220V', '220/380V'];
+                options.forEach(opt => voltageSelect.add(new Option(opt, opt)));
+                if (options.includes(currentVoltage)) voltageSelect.value = currentVoltage;
+                updateAvailableInverterBrands(systemType, phaseId, voltageId, brandSelectId);
+            };
+            if (!phaseSelect.dataset.listenerAttached) {
+                phaseSelect.addEventListener('change', update);
+                phaseSelect.dataset.listenerAttached = 'true';
+            }
+            update();
+        }
+        function openLoadsModal() { document.getElementById('loadsModal').classList.remove('hidden'); }
+        function closeLoadsModal() { document.getElementById('loadsModal').classList.add('hidden'); }
+        function addLoadRow() {
+            const tableBody = document.getElementById('loadsTable').tBodies[0];
+            const newRow = tableBody.rows[0].cloneNode(true);
+            newRow.querySelectorAll('input, select').forEach(el => {
+                if (el.tagName === 'SELECT') el.selectedIndex = 0;
+                else if (el.type === 'number') el.value = el.classList.contains('qty') ? 1 : 0;
+            });
+            tableBody.appendChild(newRow);
+        }
+        function removeRow(button) {
+            const row = button.closest('tr');
+            if (row.parentElement.rows.length > 1) { row.remove(); }
+            else { showToast('É necessário manter pelo menos um item na lista de cargas.', 'error'); }
+        }
+        function calculateLoads() {
+            let totalPower = 0, dailyEnergy = 0;
+            document.querySelectorAll('#loadsTable tbody tr').forEach(row => {
+                const qty = parseFloat(row.querySelector('.qty').value) || 0;
+                const power = parseFloat(row.querySelector('.power').value) || 0;
+                const hours = parseFloat(row.querySelector('.hours').value) || 0;
+                totalPower += qty * power;
+                dailyEnergy += qty * power * hours;
+            });
+            return { totalPower, dailyEnergy: dailyEnergy / 1000 };
+        }
+        function updateLoadsFields() {
+            const { totalPower, dailyEnergy } = calculateLoads();
+            document.getElementById('power').value = (totalPower / 1000).toFixed(2);
+            document.getElementById('dailyEnergyField').value = dailyEnergy.toFixed(2);
+        }
+        function calculateOnGrid() { showToast('Função de cálculo On-Grid a ser implementada.', 'error'); }
+        function calculateOffGrid() { showToast('Função de cálculo Off-Grid a ser implementada.', 'error'); }
+
+        // --- Inicialização ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('hibridos').classList.remove('hidden');
+            document.querySelector('.tab-button[data-tab="hibridos"]').classList.add('active');
+            setupEventListeners();
+            updateFieldsVisibility('backup');
+            toggleConsumptionInput();
+            loadProductsFromDatabase();
+            
+            // Adiciona listener para o campo de Modo de Cálculo para garantir que a visibilidade do campo de backup seja atualizada
+            document.getElementById('calcMode').addEventListener('change', toggleLoadsCalculator);
+            
+            // Força a visibilidade inicial no carregamento completo
+            toggleLoadsCalculator(); 
+        });
+    </script>
+</body>
+</html>
